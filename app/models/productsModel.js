@@ -13,11 +13,14 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
         image: {
-            type: Sequelize.STRING(500),
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        quantity: {
+            type: Sequelize.INTEGER,
             allowNull: false
         }
     }
     )
-
     return Product;
 }

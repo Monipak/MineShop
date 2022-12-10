@@ -19,4 +19,12 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.products = require("./productsModel.js")(sequelize, Sequelize);
+db.users = require("./usersModel.js")(sequelize, Sequelize);
+db.reviews = require("./reviewsModel.js")(sequelize, Sequelize);
+
+db.products.hasMany(db.reviews,{
+    foreignKey:"productId"
+});
+
+db.roles = ["user","admin"]
 module.exports = db;
