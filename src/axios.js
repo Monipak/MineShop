@@ -10,5 +10,8 @@ const apiClient = axios.create({
 export default {
     logIn(userInfo){
         return apiClient.post('/api/users/login',userInfo)
+    },
+    register(userInfo){
+        return apiClient.post('/api/users/register',userInfo)
     }
 }

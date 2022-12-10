@@ -27,7 +27,7 @@ function createUser(req, res) {
   })
     .then(() => {
       res.status(200).send({
-        message: "User was registered successfully!",
+        message: "Welcome",
       });
     })
     .catch((err) => {

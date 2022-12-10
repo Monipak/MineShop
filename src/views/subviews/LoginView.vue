@@ -3,6 +3,7 @@
   <input type="text" v-model="this.username" />
   <input type="text" v-model="this.password" />
   <button @click="login">Log in !</button>
+  <button @click="debug">debug</button>
   <div id="errorMessage" ref="errorMessage"></div>
   Don't have an account ?
   <router-link to="/register">Register here</router-link>
@@ -22,8 +23,8 @@ export default {
           username: this.username,
           password: this.password,
         })
-        .then((response) => {
-          console.log("hihi" + response);
+        .then(() => {
+          this.$router.push('/')
         })
         .catch(
           (error) =>
@@ -31,6 +32,9 @@ export default {
               "Error while logging in : " + error.response.data.message)
         );
     },
+    debug(){
+        console.log(this.$store.getters.userInfo)
+    }
   },
 };
 </script>

@@ -3,11 +3,15 @@ import axiosHandler from "../axios.js";
 export default createStore({
   state: {
     user: {},
+    islogged:false,
   },
   getters: {
     userInfo(state) {
       return state.user;
     },
+    isLogged(state){
+      return state.islogged
+    }
   },
   mutations: {
     SET_USER_INFO(state, payload) {
@@ -22,16 +26,17 @@ export default createStore({
   },
   actions: {
     login(context, userInfo) {
-      var prom = axiosHandler.logIn(userInfo);
+      var promise = axiosHandler.logIn(userInfo);
 
-      prom
+      promise
         .then((response) => {
-          console.log("yay");
-          context.commit("SET_USER_INFO", response.body);
-          console.log(context.getters.userInfo);
+          context.commit("SET_USER_INFO", response.data)
         })
         .catch((error)=> error) // do nothing as it is handled in vue
-      return prom;
+      return promise;
     },
+    register(context,userInfo){
+      return axiosHandler.register(userInfo)
+    }
   },
 });
