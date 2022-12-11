@@ -2,6 +2,13 @@ const db = require("../models");
 const Reviews = db.reviews;
 
 exports.create = (req, res) => {
+    if (!Number.isInteger(parseInt(req.params.productId))) {
+        res.status(400).send({
+            message: "invalid ID!"
+        })
+        return;
+    }
+    
      if (!req.body.message) {
         res.status(400).send({
             message: "review shall have a message !"
@@ -13,6 +20,7 @@ exports.create = (req, res) => {
         })
         return
     }
+    
 
     const review = {
         date: req.body.date,

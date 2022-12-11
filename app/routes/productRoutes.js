@@ -3,6 +3,7 @@ module.exports = (app) => {
   const middlewares = require("../middlewares/index.js");
   // test server
   app.get("/api/products", products.findAll);
+  app.get("/api/products/:id/average",products.averageReview)
   app.post(
     "/api/products",
     middlewares.authJwt.verifyToken,

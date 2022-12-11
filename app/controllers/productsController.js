@@ -107,24 +107,61 @@ exports.updateOne = (req, res) => {
 
 exports.updateOneQuantity = (req, res) => {
   //very hazardous (race)
-    if (!Number.isInteger(parseInt(req.params.id))) {
-      res.status(400).send({
-        message: "invalid ID!",
+  if (!Number.isInteger(parseInt(req.params.id))) {
+    res.status(400).send({
+      message: "invalid ID!",
+    });
+    return;
+  }
+  Products.update(
+    {
+      quantity: req.body.quantity,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  );
+  res.sendStatus(200);
+  return;
+};
+
+exports.averageReview = (req, res) => {
+  if (!Number.isInteger(parseInt(req.params.id))) {
+    res.status(400).send({
+      message: "invalid ID!",
+    });
+    return;
+  }
+  Products.findByPk(req.params.id)
+    .then((data) => {
+      if (data) {
+        db.reviews
+          .sum("rate", { where: { productId: req.params.id } })
+          .then((sum) => {
+            return (
+              sum /
+              db.reviews
+                .count({ where: { productId: req.params.id } })
+                .then((count) => {
+                  return res.status(200).send({ rate: sum/count });
+                })
+            );
+          });
+        return;
+      }
+      res
+        .status(404)
+        .send({ message: "COULDN'T FIND PRODUCT WITH ID " + req.params.id });
+      return;
+    })
+    .catch((error) => {
+      res.status(500).send({
+        message: error.message,
       });
       return;
-    }
-    Products.update(
-      {
-        quantity: req.body.quantity,
-      },
-      {
-        where: {
-          id: req.params.id,
-        },
-      }
-    );
-    res.sendStatus(200);
-    return;
+    });
 };
 
 exports.fromjson = () => {
