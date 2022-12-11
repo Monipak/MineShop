@@ -1,0 +1,53 @@
+{
+  "articles": [
+    {
+      "name": "Dirt Block",
+      "description": "A block found abundantly in most biomes under a layer of grass blocks at the top of the Overworld.",
+      "price": "0.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/2f/Dirt.png",
+      "quantity": 236
+    },
+    {
+      "name": "Grass Block",
+      "description": "A natural block that generates abundantly across the surface of the Overworld.",
+      "price": "99.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/93/Grass_Block_JE7_BE6.png",
+      "quantity": 14
+    },
+    {
+      "name": "Rooted Dirt Block",
+      "description": "A natural decorative block.",
+      "price": "9.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/dd/Rooted_Dirt_JE1_BE1.png",
+      "quantity": 176
+    },
+    {
+      "name": "Coarse Dirt Block",
+      "description": "A variation of dirt on which grass block cannot spread.",
+      "price": "3.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/be/Coarse_Dirt.png",
+      "quantity": 112
+    },
+    {
+      "name": "Lava Bucket",
+      "description": "A bucket filled with lava.",
+      "price": "149.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/74/Lava_Bucket_JE2_BE2.png",
+      "quantity": 8
+    },
+    {
+      "name": "Water Bucket",
+      "description": "A bucket filled with water.",
+      "price": "119.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/dc/Water_Bucket_JE2_BE2.png",
+      "quantity": 17
+    },
+    {
+      "name": "Diamond Hoe",
+      "description": "A tool used to till dirt and grass blocks, made from diamond.",
+      "price": "999.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/04/Diamond_Hoe_JE3_BE3.png",
+      "quantity": 2
+    }
+  ]
+}

@@ -6,4 +6,5 @@ module.exports = (app) => {
   app.get("/api/products/:id", products.findOne);
   app.delete("/api/products/:id", products.deleteOne);
   app.patch("/api/products/:id", products.updateOne);
+  app.patch("/api/products/:id/quantity",products.updateOneQuantity)
 };

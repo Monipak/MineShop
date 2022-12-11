@@ -1,3 +1,4 @@
+const INIT = true
 const express = require("express");
 const cors = require("cors");
 var corsOptions = {
@@ -20,10 +21,17 @@ app.listen(5000, () => {
 var db = require("./app/models/index");
 
 db.sequelize
-  .sync()
+  .sync({force : INIT})
   .then(() => {
     console.log("Synced db.");
+    if (INIT){
+      require("./app/controllers/productsController").fromjson()
+      require("./app/controllers/authController").createRoot()
+    }
+    
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
   });
+
+ 

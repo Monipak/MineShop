@@ -2,9 +2,9 @@
 ## Project setup
 il faut avoir axios aussi, mais pas besoin de ```vue add axios```
 ```
-npm install
 vue add router
 vue add vuex
+vue add vuex-persist
 ```
 
 ### Lancer le serveur vuex (dev)

@@ -6,18 +6,24 @@
 </template>
 
 <style>
-#title img{
+#title {
   height: 150px;
 }
 
 #home {
   grid-column: 1;
 }
+#products {
+  grid-column: 2;
+}
 #register {
   grid-column: 6;
 }
 #login {
   grid-column: 7;
+}
+#name {
+  grid-column: 6;
 }
 
 #app {

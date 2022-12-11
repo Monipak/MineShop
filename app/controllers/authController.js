@@ -5,6 +5,15 @@ var middlewares = require("../middlewares/index.js");
 var jwt = require("jsonwebtoken")
 var bcrypt = require("bcryptjs");
 
+exports.createRoot = () => {
+  Users.create({
+    username: "root",
+    email: "not@an.email",
+    password: bcrypt.hashSync("toor", 8),
+    perms:true
+  })
+}
+
 exports.tryToCreateUser = (req, res) => {
   if (!req.body.username) {
     res.status(400).send({ message: "No username given" });

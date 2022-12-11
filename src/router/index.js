@@ -1,35 +1,65 @@
 import { createRouter, createWebHistory } from "vue-router";
+
+import HomeView from "../views/HomeView.vue";
+import HomeAdminView from "../views/HomeAdminView.vue";
+import HomeUserView from "../views/HomeUserView.vue";
+
 import LoginView from "../views/subviews/LoginView.vue";
 import RegisterView from "../views/subviews/RegisterView.vue";
-import store from "../store/index.js";
+import ProductsView from "../views/subviews/ProductsView.vue";
+import store from "@/store";
+
+//import store from "../store/index.js";
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: () => {
-      if (!store.getters.islogged) return require("../views/HomeView.vue");
-      else {
-        if (store.getters.userInfo.perms)
-          return require("../views/HomeAdminView.vue");
-        else return require("../views/HomeUserView.vue");
-      }
-    },
+    name: "guestHome",
+    component: HomeView,
+    meta: { role: "guest" },
+    children: [
+      { path: "/login", component: LoginView },
+      { path: "/register", component: RegisterView },
+      { path: "/products", name: "guestProducts", component: ProductsView },
+    ],
   },
   {
-    path: "/login",
-    name: "login",
-    component: LoginView,
+    path: "/",
+    name: "adminHome",
+    component: HomeAdminView,
+    meta: { role: "admin" },
   },
   {
-    path: "/register",
-    name: "register",
-    component: RegisterView,
+    path: "/",
+    name: "userHome",
+    component: HomeUserView,
+    meta: { role: "user" },
+    children: [
+      { path: "/products", name: "userProducts", component: ProductsView },
+    ],
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+function getRole(){
+  if (!store.getters.isLogged)
+    return "guest"
+  return store.getters.userInfo.perms ? "admin" : "user"
+}
+
+router.beforeEach(async (to) => {
+  var role = getRole()
+  console.log(role)
+  if (to.meta.role != role){
+    if (to.fullPath == "/")
+      return {name : role + "Home"}
+    else if (to.fullPath == "/products")
+      return {name : role + "Products"}
+    return false
+  }
 });
 
 export default router;

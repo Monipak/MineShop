@@ -1,35 +1,54 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.js");
 const db = require("../models");
-const User = db.user;
-verifyToken = (req, res, next) => {
+
+verifyAdmin = (req, res) => {
   let token = req.headers["x-access-token"];
   if (!token) {
     return res.status(403).send({
       message: "No token provided!",
     });
   }
-  jwt.verify(token, config.secret, (err, decoded) => {
+  return jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({
-        message: "Unauthorized!",
+        message: "Invalid token!",
       });
     }
-    req.userId = decoded.id;
-    next(req,res);
+    return isAdmin(decoded.id);
   });
 };
 
+verifyToken = (req, res) => {
+  let token = req.headers["x-access-token"];
+  if (!token) {
+    return res.status(403).send({
+      message: "No token provided!",
+    });
+  }
+  return jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({
+        message: "Invalid token!",
+      });
+    }
+    return db.users.findByPk(decoded.id).then((user) => {
+      if (user) return decoded.id;
+      return false;
+    });
+  });
+};
 
 isAdmin = (uid) => {
-  User.findByPk(uid).then((user) => {
-      return user.perms
-    });
+  return db.users.findByPk(uid).then((user) => {
+    if (user) return user.perms;
+    return false;
+  });
 };
 
 const authJwt = {
   verifyToken: verifyToken,
-  isAdmin: isAdmin,
+  verifyAdmin: verifyAdmin,
 };
 
 module.exports = authJwt;
