@@ -2,12 +2,7 @@ const db = require("../models");
 const Reviews = db.reviews;
 
 exports.create = (req, res) => {
-    if (!req.body.user) {
-        res.status(400).send({
-            message: "review shall have a user !"
-        })
-        return
-    } else if (!req.body.message) {
+     if (!req.body.message) {
         res.status(400).send({
             message: "review shall have a message !"
         })
@@ -21,7 +16,7 @@ exports.create = (req, res) => {
 
     const review = {
         date: req.body.date,
-        user: req.body.user,
+        user: req.userId,
         message: req.body.message,
         rate: req.body.rate,
         productId: req.params.productId
@@ -105,6 +100,33 @@ exports.findOne = (req, res) => {
             if (data) {
                 res.status(200).send(data)
                 return
+            }
+            res.status(404).send({ message: "COULDN'T FIND review WITH ID " + req.params.id })
+            return
+        })
+        .catch(error => {
+            res.status(500).send({
+                message: error.message
+            })
+            return
+        })
+}
+
+exports.ownerId = (req, res, next) => {
+    if (!Number.isInteger(parseInt(req.params.id))) {
+        res.status(400).send({
+            message: "invalid ID!"
+        })
+        return;
+    }
+
+
+    Reviews.findByPk(req.params.id)
+        .then(data => {
+            if (data) {
+                req.ownerId = data.user
+                next()
+                return;
             }
             res.status(404).send({ message: "COULDN'T FIND review WITH ID " + req.params.id })
             return

@@ -25,7 +25,8 @@ exports.tryToCreateUser = (req, res) => {
     res.status(400).send({ message: "No password given" });
     return;
   }
-  middlewares.verifySignUp.checkDuplicateUsernameOrEmail(req, res, createUser);
+
+  middlewares.verifySignUp.checkDuplicateUsernameOrEmail(req, res, createUser); // bad usage of middleware, but used only once and does a db query on invalid data 
 };
 
 function createUser(req, res) {

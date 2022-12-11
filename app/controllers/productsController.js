@@ -1,5 +1,4 @@
 const db = require("../models");
-const middlewares = require("../middlewares/index");
 const Products = db.products;
 
 exports.findAll = (req, res) => {
@@ -15,30 +14,23 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  middlewares.authJwt.verifyAdmin(req, res).then((perm) => {
-    if (!perm) {
-      res.sendStatus(401);
-      return;
-    }
+  const product = {
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    image: req.body.image,
+    quantity: req.body.quantity,
+  };
 
-    const product = {
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
-      image: req.body.image,
-      quantity: req.body.quantity,
-    };
-
-    Products.create(product)
-      .then((data) => {
-        res.status(200).send(data);
-      })
-      .catch((error) => {
-        res.status(500).send({
-          message: error.message,
-        });
+  Products.create(product)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((error) => {
+      res.status(500).send({
+        message: error.message,
       });
-  });
+    });
 };
 
 exports.findOne = (req, res) => {
@@ -69,39 +61,52 @@ exports.findOne = (req, res) => {
 };
 
 exports.deleteOne = (req, res) => {
-  middlewares.authJwt.verifyAdmin(req, res).then((perm) => {
-    if (!perm) {
-      res.sendStatus(401);
-      return;
-    }
+  if (!Number.isInteger(parseInt(req.params.id))) {
+    res.status(400).send({
+      message: "invalid ID!",
+    });
+    return;
+  }
+  db.reviews.destroy({ where: { productId: req.params.id } });
 
-    if (!Number.isInteger(parseInt(req.params.id))) {
-      res.status(400).send({
-        message: "invalid ID!",
+  Products.destroy({ where: { id: req.params.id } })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      res.status(500).send({
+        message: error.message,
       });
       return;
-    }
-    db.reviews.destroy({ where: { productId: req.params.id } });
-
-    Products.destroy({ where: { id: req.params.id } })
-      .then(() => {
-        res.sendStatus(200);
-      })
-      .catch((error) => {
-        res.status(500).send({
-          message: error.message,
-        });
-        return;
-      });
-  });
+    });
 };
 
 exports.updateOne = (req, res) => {
-  middlewares.authJwt.verifyAdmin(req, res).then((perm) => {
-    if (!perm) {
-      res.sendStatus(401);
-      return;
+  if (!Number.isInteger(parseInt(req.params.id))) {
+    res.status(400).send({
+      message: "invalid ID!",
+    });
+    return;
+  }
+  Products.update(
+    {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      image: req.body.image,
+      quantity: req.body.quantity,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
     }
+  );
+  res.sendStatus(200);
+};
+
+exports.updateOneQuantity = (req, res) => {
+  //very hazardous (race)
     if (!Number.isInteger(parseInt(req.params.id))) {
       res.status(400).send({
         message: "invalid ID!",
@@ -110,10 +115,6 @@ exports.updateOne = (req, res) => {
     }
     Products.update(
       {
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        image: req.body.image,
         quantity: req.body.quantity,
       },
       {
@@ -123,35 +124,7 @@ exports.updateOne = (req, res) => {
       }
     );
     res.sendStatus(200);
-  });
-};
-
-exports.updateOneQuantity = (req, res) => {
-  //very hazardous (race)
-  middlewares.authJwt.verifyToken(req, res).then((id) => {
-    if (id) {
-      if (!Number.isInteger(parseInt(req.params.id))) {
-        res.status(400).send({
-          message: "invalid ID!",
-        });
-        return;
-      }
-      Products.update(
-        {
-          quantity: req.body.quantity,
-        },
-        {
-          where: {
-            id: req.params.id,
-          },
-        }
-      );
-      res.sendStatus(200);
-      return;
-    }
-    res.sendStatus(401);
     return;
-  });
 };
 
 exports.fromjson = () => {

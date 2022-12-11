@@ -1,49 +1,103 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.js");
 const db = require("../models");
-
-verifyAdmin = (req, res) => {
+const User = db.users;
+verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
   if (!token) {
     return res.status(403).send({
       message: "No token provided!",
     });
   }
-  return jwt.verify(token, config.secret, (err, decoded) => {
+  jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
-      return res.status(401).send({
-        message: "Invalid token!",
-      });
+      return res.sendStatus(401);
     }
-    return isAdmin(decoded.id);
+    req.userId = decoded.id;
+    next();
   });
 };
-
-verifyToken = (req, res) => {
+isAdmin = (req, res, next) => {
+  User.findByPk(req.userId).then((user) => {
+    if (user.perms){
+      next();
+      return;
+    }
+    res.sendStatus(401);
+    return
+  });
+};
+isUser = (req, res, next) => {
+  User.findByPk(req.userId).then((user) => {
+    if (user){
+      next();
+      return;
+    }
+    res.sendStatus(401);
+    return
+  });
+}
+isAdminOrOwner = (req,res,next) => {
+  if (req.ownerId == req.userId){
+    next()
+    return;
+  }
+  User.findByPk(req.userId).then((user) => {
+    if (user.perms){
+      next();
+      return;
+    }
+    res.sendStatus(401);
+    return
+  }); 
+}
+const authJwt = {
+  verifyToken: verifyToken,
+  isAdmin: isAdmin,
+  isUser: isUser,
+  isAdminOrOwner: isAdminOrOwner
+};
+module.exports = authJwt;
+/*
+verifyAdmin = (req,res) => {
   let token = req.headers["x-access-token"];
   if (!token) {
     return res.status(403).send({
       message: "No token provided!",
     });
   }
-  return jwt.verify(token, config.secret, (err, decoded) => {
+  jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({
         message: "Invalid token!",
       });
     }
-    return db.users.findByPk(decoded.id).then((user) => {
-      if (user) return decoded.id;
-      return false;
-    });
+    return isAdmin(decoded.id)
   });
 };
+
+verifyToken = (req, res, next) => {
+  let token = req.headers["x-access-token"];
+  if (!token) {
+    return res.status(403).send({
+      message: "No token provided!",
+    });
+  }
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({
+        message: "Invalid token!",
+      });
+    }
+    req.userId = decoded.id;
+    next(req,res);
+  });
+};
+
 
 isAdmin = (uid) => {
-  return db.users.findByPk(uid).then((user) => {
-    if (user) return user.perms;
-    return false;
-  });
+  console.log
+  return db.users.findByPk(uid).then(user => user.perms);
 };
 
 const authJwt = {
@@ -51,4 +105,4 @@ const authJwt = {
   verifyAdmin: verifyAdmin,
 };
 
-module.exports = authJwt;
+module.exports = authJwt; */
