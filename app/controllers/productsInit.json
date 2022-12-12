@@ -92,7 +92,7 @@
       "name": "Glow Ink Sac",
       "description": "An item dropped by a glow squid upon death. Unlike regular ink sacs, it can be added to signs to make glowing text, and can be used to craft glow item frames.",
       "price": "29.99",
-      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Glow_Ink_Sac_JE1_BE1.png/revision/latest?cb=20210120202031",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Glow_Ink_Sac_JE1_BE1.png",
       "quantity": 54,
       "category": "misc"
     },

@@ -6,7 +6,7 @@
       v-for="product in this.products"
       :key="product.id"
       v-bind:product="product"
-      v-bind:rate="rates[product.id].rate"
+      v-bind:rate="rates[product.id]"
       @qtEvent="incOrDecCart"
     />
   </div>

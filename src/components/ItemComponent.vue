@@ -35,8 +35,7 @@ export default {
         }
     },
     mounted() {
-
-        this.$refs.fullstars.style.marginRight = "-" + (380-(76*this.rate)) + "px";
+        this.$refs.fullstars.style.marginRight = "-" + (380-(76*this.rate.rate)) + "px";
         if(this.$route.meta.role != 'user'){
             this.$refs.emptystars.style.marginTop = "25px";
             this.$refs.fullstarsdiv.style.bottom = "38px";
