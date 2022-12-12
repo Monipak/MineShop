@@ -25,7 +25,7 @@ export default {
   loadEveryProduct(){
     return apiClient.get('/api/products')
   },
-  getReview(id){
+  getRate(id){
     return apiClient.get('/api/products/'+id+'/average')
   }
 };

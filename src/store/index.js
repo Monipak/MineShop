@@ -95,7 +95,7 @@ export default createStore({
     },
     getRates(context){
       context.getters.allProducts.forEach(product => {
-        axiosHandler.getReview(product.id).then(rate=>{
+        axiosHandler.getRate(product.id).then(rate=>{
           context.commit("SET_RATE",{id:product.id,rate:rate.data})
         })
       });
