@@ -29,7 +29,7 @@ export default{
         ReviewCard,
         EditProduct
     },
-    created(){
+    activated(){
         this.product = this.$store.getters.allProducts.filter(product => product.id == this.$route.params.id)[0]
     }
 }
@@ -38,7 +38,7 @@ export default{
 <style scoped>
     .item{
         margin-top: 50px;
-        height: 450px;
+        height: 500px;
         width: 70%;
         margin-left: auto;
         margin-right: auto;
