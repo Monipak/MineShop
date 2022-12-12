@@ -1,4 +1,5 @@
 <template>
+    <button @click="test">aa</button>
     <EditProduct v-if="this.$route.meta.role == 'admin'"/>
 
     <div class="item">
@@ -17,11 +18,12 @@
 import AddReview from '@/components/AddReview.vue';
 import ReviewCard from '@/components/ReviewCard.vue';
 import EditProduct from '@/components/EditProduct.vue';
+import { mapGetters } from 'vuex';
 export default{
-    data(){
-        return {
-            product : {},
-            reviews : {}
+    computed:{
+        ...mapGetters({reviews:'currentReviews'}),
+        product(){
+            return this.$store.getters.allProducts.filter(product => product.id == this.$route.params.id)[0]
         }
     },
     components: {
@@ -29,8 +31,13 @@ export default{
         ReviewCard,
         EditProduct
     },
-    activated(){
-        this.product = this.$store.getters.allProducts.filter(product => product.id == this.$route.params.id)[0]
+    methods:{
+        test(){
+            console.log(this.reviews)
+        }
+    },
+    created(){
+        this.$store.dispatch("getProductReviews",this.$route.params.id)
     }
 }
 </script>

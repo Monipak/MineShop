@@ -161,7 +161,7 @@ export default createStore({
           })
         }
         context.commit("SET_CURRENT_REVIEWS",newReviews)
-      });
+      }).catch(error => error);
     },
   },
   plugins: [vuexLocal.plugin],

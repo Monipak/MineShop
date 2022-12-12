@@ -18,10 +18,10 @@ export default{
   },
   methods:{
     debug(){
-      console.log(this.$store.dispatch("setProductQuantity",{id:2,quantity:120}))      
+          
     },
     debug2(){
-      this.$store.dispatch("getProductReviews",1)
+     console.log(this.$store.getters.currentReviews)
       
     }
   }
