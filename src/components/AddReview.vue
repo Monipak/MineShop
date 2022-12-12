@@ -1,6 +1,6 @@
 <template>
 
-    <div class="review">
+    <div class="review" @keypress.enter="confirm">
         <h2>Add your review</h2>
         <textarea style="width: 500px;resize: none;" cols="40" rows="5" v-model="reviewText" type="text"
             placeholder="Add your review" required>
@@ -27,22 +27,29 @@ export default {
         }
     },
     methods: {
-        test() {
-            console.log(this.$el.querySelector('input[name="rating"]:checked').value);
-        },
         confirm() {
-            this.rate = this.$el.querySelector('input[name="rating"]:checked').value;
-            this.$store.dispatch("addReview", 
-            { id: this.$route.params.id, 
-            review: {message:this.reviewText,rate:this.rate} })
-            .then(this.$emit('update'))
-            
+            if (!this.$store.getters.currentReviews
+            .filter(rev => rev.user == this.$store.getters.userInfo.username).length) 
+            {
+                var rateEl = this.$el.querySelector('input[name="rating"]:checked')
+                this.rate = rateEl ? rateEl.value : 5
+                this.$store.dispatch("addReview",
+                    {
+                        id: this.$route.params.id,
+                        review: { message: this.reviewText, rate: this.rate, user: this.$store.getters.userInfo.username }
+                    })
+                    .then(this.$emit('update'))
+            } else {
+                alert("You already reviewed this article !")
+            }
+
+
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 body {
     background: #222225;
     color: white;
@@ -95,6 +102,7 @@ body {
     border: solid black 5px;
     border-radius: 25px;
     background-color: rgba(64, 64, 64, 0.7);
+    position: relative;
 }
 
 .review h1 {

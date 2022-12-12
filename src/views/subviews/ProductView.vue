@@ -1,5 +1,4 @@
 <template>
-    <button @click="test">aa</button>
     <EditProduct v-if="this.$route.meta.role == 'admin'"/>
 
     <div class="item">

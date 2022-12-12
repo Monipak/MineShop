@@ -14,7 +14,18 @@
     </div>
     
   </nav>
-  <h1>This homework is not finished :( The backend & the authentification are done, there is a few frontend pages to finish and to link to the backend. Most features don't work !</h1>
+  <h1>Now this is a proper website ! As not to take too much of your time (sorry again), this is our final Version !
+  <br>To Help you a little, everything, as we have tested, works (front end backend etc) except :
+  <br> - The possibility to delete a review
+  <br> - The possibility to delete a product
+  <br> - The possibility to edit the information of product (only the template is made, not linked to the database)
+  <br>
+  <br>You probably know it already but just in cause, to run all of this :  "npm install", "npm run start" then "npm run serve"
+  <br>Thank you :)
+  <br>Romain Foucher
+  <br>Benjamin Corcos
+  <br>Arthur Gagniare
+</h1>
   <router-view v-slot="{ Component }">
     <keep-alive>
       <component :is="Component" />

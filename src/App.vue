@@ -2,8 +2,6 @@
   <div id="title">
     <img src="https://i.ibb.co/RpkDz4C/background.png">
   </div>
-  <button @click="debug">DEBUG</button>
-  <button @click="debug2">DEBUG2</button>
   <div id="apptab">
     <router-view/>
   </div>
@@ -17,13 +15,6 @@ export default{
     this.$store.dispatch("getRates")
   },
   methods:{
-    debug(){
-      console.log(this.$store.getters.allProducts)
-    },
-    debug2(){
-     console.log(this.$store.getters.currentReviews)
-      
-    }
   }
 }
 </script>

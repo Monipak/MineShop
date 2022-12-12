@@ -67,7 +67,10 @@ router.beforeEach(async (to) => {
     if (to.path == "/") return { name: role + "Home" };
     else if (to.path.includes("/products")) {
       if (!to.params.id) return { name: role + "Products" };
-      return { name: role + "Product", params :{id:to.params.id} };
+      else {
+        store.commit("SET_CURRENT_REVIEWS",[])
+        return { name: role + "Product", params :{id:to.params.id} };
+      } 
     }
     return "/";
   }
