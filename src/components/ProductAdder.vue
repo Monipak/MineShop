@@ -1,8 +1,8 @@
 <template>
+    <h2>Product adder</h2>
     <form class="ProductForm">
+        
         <div class="ProductCategory">
-            <h2>Product adder</h2>
-            <br>
             <h4>Product Category</h4>
             <select v-model="category" required>
                 <option disabled value="">Please select one category</option>
@@ -13,19 +13,24 @@
                 <option value="misc">Miscenaleous</option>
             </select>
         </div>
-        <div class="Product">
+        <div class="ProductName">
             <h4>Name</h4>
             <input v-model="name" type="text" placeholder="Name of the product" required>
-
+        </div>
+        <div class="ProductDescription">
             <h4>Description</h4>
             <input v-model="description" type="text" placeholder="Description of the product" required>
         </div>
 
-        <div class="ProductDetails">
+        <div class="ProductImage">
             <h4>Image</h4>
             <input v-model="image" type="text" placeholder="Link for the product's image" required>
+        </div>
+        <div class="ProductPrice">
             <h4>Price</h4>
             <input v-model="price" type="text" placeholder="Price of the product" required>
+        </div>
+        <div class="ProductQuantity">
             <h4>Quantity</h4>
             <input v-model="QT" type="text" placeholder="Amount of the product" required>
         </div>
@@ -44,7 +49,7 @@
 
 .ProductForm{
     height: auto;
-    width: 700px;
+    width: 80%;
     background-color: white;
     color: black;
     display: flex;
@@ -54,16 +59,18 @@
     margin-bottom: 30px;
     border: rgb(75,75,75) solid 2px;
     border-radius: 25px;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
 
-.ProductForm input,button{
+.ProductForm input,button,select{
     border-radius: 5px;
     border-color: rgb(75,75,75);
-    width: 300px;
+    width: 200px;
+    margin: 10px;
 }
 .ProductForm{
-    font-size: larger;
+    font-size: large;
 }
+
 </style>
