@@ -81,11 +81,43 @@
       "category": "misc"
     },
     {
-      "name": "Pumpkin ¨Pie",
+      "name": "Goat Horn",
+      "description": "An item dropped by goats. It has eight variants, and each plays a unique sound when used which can be heard by players in a large radius.",
+      "price": "199.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/40/Goat_Horn_JE1_BE1.png",
+      "quantity": 7,
+      "category": "misc"
+    },
+    {
+      "name": "Glow Ink Sac",
+      "description": "An item dropped by a glow squid upon death. Unlike regular ink sacs, it can be added to signs to make glowing text, and can be used to craft glow item frames.",
+      "price": "29.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Glow_Ink_Sac_JE1_BE1.png/revision/latest?cb=20210120202031",
+      "quantity": 54,
+      "category": "misc"
+    },
+    {
+      "name": "Pumpkin Pie",
       "description": "A food item that can be eaten by the player.",
       "price": "20.00",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/ac/Pumpkin_Pie_JE2_BE2.png",
       "quantity": 43,
+      "category": "food"
+    },
+    {
+      "name": "Poisonous Potato",
+      "description": "A type of potato that can be eaten and can poison the player.",
+      "price": "0.01",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c0/Poisonous_Potato_JE3_BE2.png",
+      "quantity": 12,
+      "category": "food"
+    },
+    {
+      "name": "Rabbit Stew",
+      "description": "A food item that can be eaten by the player.",
+      "price": "12.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0c/Rabbit_Stew_JE3_BE2.png",
+      "quantity": 22,
       "category": "food"
     }
     
