@@ -31,9 +31,10 @@ export default {
         padding: 20px;
         margin: 10px;
         height: 500px;
-        width: 700px;
+        width: 400px;
         border-radius: 40px;
         background-color: #FFFFFF;
+        flex-shrink: 0;
         }
     img {
         height: 240px;

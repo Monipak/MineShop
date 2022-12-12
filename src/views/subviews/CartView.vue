@@ -78,6 +78,7 @@ export default {
 .cart {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .description {
