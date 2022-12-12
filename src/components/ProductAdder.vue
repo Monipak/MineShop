@@ -1,17 +1,18 @@
 <template>
     <form class="ProductForm">
-        <!--
         <div class="ProductCategory">
-            <h4>Product adder</h4>
+            <h2>Product adder</h2>
+            <br>
+            <h4>Product Category</h4>
             <select v-model="category" required>
                 <option disabled value="">Please select one category</option>
                 <option value="block">Block</option>
                 <option value="tool">Tool</option>
                 <option value="food">Food</option>
+                <option value="mineral">Mineral</option>
                 <option value="misc">Miscenaleous</option>
             </select>
         </div>
-        -->
         <div class="Product">
             <h4>Name</h4>
             <input v-model="name" type="text" placeholder="Name of the product" required>
@@ -23,7 +24,7 @@
         <div class="ProductDetails">
             <h4>Price</h4>
             <input v-model="price" type="text" placeholder="Price of the product" required>
-            <h4>Price</h4>
+            <h4>Quantity</h4>
             <input v-model="QT" type="text" placeholder="Amount of the product" required>
         </div>
 
@@ -41,7 +42,7 @@
 
 .ProductForm{
     height: auto;
-    width: 400px;
+    width: 700px;
     background-color: white;
     color: black;
     display: flex;
@@ -58,6 +59,9 @@
 .ProductForm input,button{
     border-radius: 5px;
     border-color: rgb(75,75,75);
+    width: 300px;
 }
-
+.ProductForm{
+    font-size: larger;
+}
 </style>

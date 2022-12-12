@@ -5,49 +5,89 @@
       "description": "A block found abundantly in most biomes under a layer of grass blocks at the top of the Overworld.",
       "price": "0.99",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/2f/Dirt.png",
-      "quantity": 236
+      "quantity": 236,
+      "category": "block"
     },
     {
       "name": "Grass Block",
       "description": "A natural block that generates abundantly across the surface of the Overworld.",
       "price": "99.99",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/93/Grass_Block_JE7_BE6.png",
-      "quantity": 14
+      "quantity": 14,
+      "category": "block"
     },
     {
       "name": "Rooted Dirt Block",
       "description": "A natural decorative block.",
       "price": "9.99",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/dd/Rooted_Dirt_JE1_BE1.png",
-      "quantity": 176
+      "quantity": 176,
+      "category": "block"
     },
     {
       "name": "Coarse Dirt Block",
       "description": "A variation of dirt on which grass block cannot spread.",
       "price": "3.99",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/be/Coarse_Dirt.png",
-      "quantity": 112
+      "quantity": 112,
+      "category": "block"
     },
     {
       "name": "Lava Bucket",
       "description": "A bucket filled with lava.",
       "price": "149.99",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/74/Lava_Bucket_JE2_BE2.png",
-      "quantity": 8
+      "quantity": 8,
+      "category": "tool"
     },
     {
       "name": "Water Bucket",
       "description": "A bucket filled with water.",
       "price": "119.99",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/dc/Water_Bucket_JE2_BE2.png",
-      "quantity": 17
+      "quantity": 17,
+      "category": "tool"
     },
     {
       "name": "Diamond Hoe",
       "description": "A tool used to till dirt and grass blocks, made from diamond.",
       "price": "999.99",
       "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/04/Diamond_Hoe_JE3_BE3.png",
-      "quantity": 2
+      "quantity": 2,
+      "category": "tool"
+    },
+    {
+      "name": "Redstone Dust",
+      "description": "A mineral that can transmit redstone power when placed as a block",
+      "price": "0.10",
+      "image": "https://static.wikia.nocookie.net/minecraft/images/a/af/Redstone_Dust.png",
+      "quantity": 100,
+      "category": "mineral"
+    },
+    {
+      "name": "Raw Iron Ore",
+      "description": "A raw metal resource obtained from mining iron ore.",
+      "price": "5.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d2/Raw_Iron_JE3_BE2.png",
+      "quantity": 34,
+      "category": "mineral"
+    },
+    {
+      "name": "Ender Pearl",
+      "description": "An item dropped by Endermen used to teleport and to make an eye of ender.",
+      "price": "499.99",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f6/Ender_Pearl_JE3_BE2.png",
+      "quantity": 6,
+      "category": "misc"
+    },
+    {
+      "name": "Pumpkin ¨Pie",
+      "description": "A food item that can be eaten by the player.",
+      "price": "20.00",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/ac/Pumpkin_Pie_JE2_BE2.png",
+      "quantity": 43,
+      "category": "food"
     }
+    
   ]
 }
