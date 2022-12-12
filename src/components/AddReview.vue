@@ -20,7 +20,11 @@
   <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
   <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
 
-</div>
+    </div>
+    <div class="submitbutton">
+    <h3>Submit review</h3>
+    </div>
+
 </div>
 </template>
 
@@ -76,7 +80,7 @@ opacity: 0.4;
 
 .review{
         margin-top: 50px;
-        height: 300px;
+        height: 400px;
         width: 70%;
         margin-left: auto;
         margin-right: auto;
@@ -106,4 +110,11 @@ select {
   font-size: large;
 }
 
+.submitbutton{
+    background-color: #692003;
+    margin-left: 550px;
+    margin-right: 550px;
+    border: solid black 3px;
+    border-radius: 8px;
+}
 </style>
