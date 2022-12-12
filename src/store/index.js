@@ -14,7 +14,7 @@ export default createStore({
     productsLoaded: false,
     privateData: {},
     rates: {},
-    cart :{}
+    cart: {}
   },
   getters: {
     userInfo(state) {
@@ -32,10 +32,13 @@ export default createStore({
     allProducts(state) {
       return state.products;
     },
-    cart(state){
+    productsLoaded(state) {
+      return state.productsLoaded
+    },
+    cart(state) {
       return state.cart
     },
-    rates(state){
+    rates(state) {
       return state.rates
     }
   },
@@ -65,8 +68,15 @@ export default createStore({
     SET_RATE(state, payload) {
       state.rates[payload.id] = payload.rate;
     },
-    SET_CART(state,cart){
+    SET_CART(state, cart) {
       state.cart = cart
+    },
+    SET_PRODUCT_QUANTITY(state, payload) {
+      state.products.forEach((product) => {
+        if (product.id == payload.id)
+          product.quantity = payload.quantity
+        return
+      })
     }
   },
   actions: {
@@ -93,12 +103,18 @@ export default createStore({
         context.commit("SET_PRODUCTS", products.data);
       });
     },
-    getRates(context){
+    getRates(context) {
       context.getters.allProducts.forEach(product => {
-        axiosHandler.getRate(product.id).then(rate=>{
-          context.commit("SET_RATE",{id:product.id,rate:rate.data})
+        axiosHandler.getRate(product.id).then(rate => {
+          context.commit("SET_RATE", { id: product.id, rate: rate.data })
         })
       });
+    },
+    setProductQuantity(context, payload) {
+
+      return axiosHandler.setProductQuantity(payload)
+      .then(context.commit("SET_PRODUCT_QUANTITY", payload))
+      .catch(error => console.log(error))
     }
   },
   plugins: [vuexLocal.plugin],

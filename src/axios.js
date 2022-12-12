@@ -22,10 +22,15 @@ export default {
       headers: { "x-access-token": store.getters.getToken }
     });
   },
-  loadEveryProduct(){
+  loadEveryProduct() {
     return apiClient.get('/api/products')
   },
-  getRate(id){
-    return apiClient.get('/api/products/'+id+'/average')
+  getRate(id) {
+    return apiClient.get('/api/products/' + id + '/average')
+  },
+  setProductQuantity(payload) {
+    return apiClient.patch('/api/products/' + payload.id + '/quantity',{quantity:payload.quantity}, {
+      headers: { "x-access-token": store.getters.getToken }
+    })
   }
 };

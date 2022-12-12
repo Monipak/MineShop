@@ -3,6 +3,7 @@
     <img src="https://i.ibb.co/RpkDz4C/background.png">
   </div>
   <button @click="debug">DEBUG</button>
+  <button @click="debug2">DEBUG2</button>
   <router-view/>
 </template>
 
@@ -13,7 +14,10 @@ export default{
   },
   methods:{
     debug(){
-      console.log(this.$store.getters.cart)
+      console.log(this.$store.dispatch("setProductQuantity",{id:2,quantity:120}))      
+    },
+    debug2(){
+      console.log(this.$store.getters.allProducts.filter(p => p.id == 2))
     }
   }
 }
