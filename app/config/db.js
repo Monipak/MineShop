@@ -1,10 +1,10 @@
 module.exports = {
-    HOST: "localhost",
+    HOST: "finalserver.c0pj4jozbnof.eu-west-2.rds.amazonaws.com",
     PORT: 3306,
     USER: "root", 
-    PASSWORD: "toor",
+    PASSWORD: "toorroot",
     DB: "finalserver",
-    dialect: "mysql",
+    dialect: "mariadb",
     pool: {
         max: 5,
         min: 0,
