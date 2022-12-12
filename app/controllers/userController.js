@@ -1,4 +1,5 @@
 const db = require("../models");
+var bcrypt = require("bcryptjs");
 const Users = db.users;
 
 exports.ownerId = (req, res, next) => {

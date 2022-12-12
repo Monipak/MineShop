@@ -10,12 +10,12 @@
     <th>Date of creation</th>
     <th>Change perms</th>
     <th>Ban User</th>
+    <th>Confirm</th>
   </tr>
-  <UserCard v-for="user in this.users" :key="user.id" v-bind:user="user" />
+  <UserCard v-for="user in users" :key="user.id" v-bind:user="user" />
   </table>
   </div>
 
-  <div class="confirmButton">Confirm</div> 
 </template>
 <script>
 import UserCard from "@/components/UserCard.vue";
@@ -26,9 +26,6 @@ export default {
   },
   computed : {
     ...mapGetters({users:'allUsers'})
-  },
-  created(){
-    console.log("created")
   }
 };
 </script>
@@ -46,14 +43,6 @@ export default {
   border-spacing: 0px;
 }
 
-.table{
-  border-spacing: 0px;
-  border-collapse: collapse;
-  border: 1px solid black;
-  width: 100%;
-
-
-}
 
 th {
   text-align: center;
@@ -62,19 +51,6 @@ th {
   border-collapse: collapse;
   border-spacing: 0px;
   
-}
-
-.confirmButton{
-  height: 50px;
-  line-height: 50px;
-  width: 80px;
-  background-color: aqua;
-  text-align: center;
-  border: solid black 3px;
-  border-radius: 45px;
-  position: absolute;
-  bottom: 20px;
-  right: 50px;
 }
 
 </style>

@@ -32,9 +32,7 @@ export default {
     return apiClient.patch(
       "/api/products/" + payload.id + "/quantity",
       { quantity: payload.quantity },
-      {
-        headers: { "x-access-token": store.getters.getToken },
-      }
+      { headers: { "x-access-token": store.getters.getToken } }
     );
   },
   addProduct(product) {
@@ -42,4 +40,19 @@ export default {
       headers: { "x-access-token": store.getters.getToken },
     });
   },
+  changePassword(payload) {
+    return apiClient.patch("/api/users/" + payload.id, 
+    { password: payload.password},
+    { headers: { "x-access-token": store.getters.getToken } });
+  },
+  makeAdmin(payload){
+    return apiClient.patch("/api/users/" + payload.id + "/setPerms", 
+    { perms: payload.perms},
+    { headers: { "x-access-token": store.getters.getToken } });
+  },
+  banUser(id){
+    return apiClient.delete("/api/users/" + id,
+    { headers: { "x-access-token": store.getters.getToken } })
+    .catch(error=>error);
+  }
 };

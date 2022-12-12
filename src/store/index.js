@@ -12,7 +12,7 @@ export default createStore({
     products: [],
     islogged: false,
     productsLoaded: false,
-    privateData: {},
+    users: {},
     rates: {},
     cart: {},
   },
@@ -27,7 +27,7 @@ export default createStore({
       return state.user.token;
     },
     allUsers(state) {
-      return state.privateData.users;
+      return state.users;
     },
     allProducts(state) {
       return state.products;
@@ -56,10 +56,10 @@ export default createStore({
     UNSET_USER_INFO(state) {
       state.islogged = false;
       state.user = {};
-      state.privateData = {};
+      state.users = {};
     },
     SET_PRIVATE_USERS(state, users) {
-      state.privateData.users = users;
+      state.users = users;
     },
     SET_PRODUCTS(state, products) {
       state.products = products;
@@ -127,6 +127,15 @@ export default createStore({
         .then(context.commit("ADD_PRODUCT", product))
         .catch((error) => console.log("err"+error));
     },
+    changePassword(context,payload){
+      return axiosHandler.changePassword(payload)
+    },
+    banUser(context,id){
+      return axiosHandler.banUser(id).then(()=>context.dispatch("loadAdminData")).catch(error => error)
+    },
+    makeUserAdmin(context,payload){
+      return axiosHandler.makeAdmin(payload).then(()=>context.dispatch("loadAdminData"))
+    }
   },
   plugins: [vuexLocal.plugin],
 });
