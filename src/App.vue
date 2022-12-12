@@ -24,6 +24,9 @@ export default{
 #title {
   height: 150px;
 }
+#title img {
+  width: 100%;
+}
 
 #home {
   grid-column: 1;
