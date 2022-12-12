@@ -8,7 +8,7 @@
 <script>
 export default{
     created() {
-        
+        console.log("hihji")
     }
 }
 </script>

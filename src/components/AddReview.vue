@@ -6,7 +6,7 @@
             placeholder="Add your review" required>
       </textarea>
 
-        <div class="rating" >
+        <div class="rating">
             <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
             <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
             <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
@@ -14,7 +14,7 @@
             <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
         </div>
 
-        <button @click="test">Confirm</button>
+        <button @click="confirm">Confirm</button>
     </div>
 </template>
 
@@ -22,12 +22,21 @@
 export default {
     data() {
         return {
-            reviewText: '   '
+            reviewText: '',
+            rate: 5
         }
     },
     methods: {
         test() {
             console.log(this.$el.querySelector('input[name="rating"]:checked').value);
+        },
+        confirm() {
+            this.rate = this.$el.querySelector('input[name="rating"]:checked').value;
+            this.$store.dispatch("addReview", 
+            { id: this.$route.params.id, 
+            review: {message:this.reviewText,rate:this.rate} })
+            .then(this.$emit('update'))
+            
         }
     }
 }
@@ -79,7 +88,7 @@ body {
 
 .review {
     margin-top: 50px;
-    height: 330px;
+    height: 350px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;

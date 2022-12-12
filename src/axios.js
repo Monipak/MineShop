@@ -17,8 +17,8 @@ export default {
   register(userInfo) {
     return apiClient.post("/api/users/register", userInfo);
   },
-  loadUser(id){
-    return apiClient.get("/api/users/"+id)
+  loadUser(id) {
+    return apiClient.get("/api/users/" + id)
   },
   loadEveryUsers() {
     return apiClient.get("/api/users", {
@@ -44,25 +44,29 @@ export default {
     });
   },
   changePassword(payload) {
-    return apiClient.patch("/api/users/" + payload.id, 
-    { password: payload.password},
-    { headers: { "x-access-token": store.getters.getToken } });
+    return apiClient.patch("/api/users/" + payload.id,
+      { password: payload.password },
+      { headers: { "x-access-token": store.getters.getToken } });
   },
-  makeAdmin(payload){
-    return apiClient.patch("/api/users/" + payload.id + "/setPerms", 
-    { perms: payload.perms},
-    { headers: { "x-access-token": store.getters.getToken } });
+  makeAdmin(payload) {
+    return apiClient.patch("/api/users/" + payload.id + "/setPerms",
+      { perms: payload.perms },
+      { headers: { "x-access-token": store.getters.getToken } });
   },
-  banUser(id){
+  banUser(id) {
     return apiClient.delete("/api/users/" + id,
-    { headers: { "x-access-token": store.getters.getToken } })
-    .catch(error=>error);
+      { headers: { "x-access-token": store.getters.getToken } })
+      .catch(error => error);
   },
-  getReviews(id){
-    return apiClient.get('/api/products/'+id+'/reviews')
+  getReviews(id) {
+    return apiClient.get('/api/products/' + id + '/reviews')
   },
-  deleteReview(id){
-    return apiClient.delete('/api/reviews/'+id,
-    { headers: { "x-access-token": store.getters.getToken } })
+  deleteReview(id) {
+    return apiClient.delete('/api/reviews/' + id,
+      { headers: { "x-access-token": store.getters.getToken } })
+  },
+  addReview(payload) {
+    return apiClient.post('/api/products/' + payload.id + '/reviews', payload.review,
+      { headers: { "x-access-token": store.getters.getToken } })
   }
 };

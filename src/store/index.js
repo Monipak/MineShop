@@ -89,6 +89,9 @@ export default createStore({
     SET_CURRENT_REVIEWS(state, reviews) {
       state.currentReviews = reviews;
     },
+    ADD_CURRENT_REVIEW(state,review){
+      state.currentReviews.push(review)
+    }
   },
   actions: {
     login(context, userInfo) {
@@ -163,6 +166,10 @@ export default createStore({
         context.commit("SET_CURRENT_REVIEWS",newReviews)
       }).catch(error => error);
     },
+    addReview(context,payload){
+      return axiosHandler.addReview(payload)
+      .then(()=>context.commit("ADD_CURRENT_REVIEW",payload.review))
+    }
   },
   plugins: [vuexLocal.plugin],
 });
