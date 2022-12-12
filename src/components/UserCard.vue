@@ -1,8 +1,10 @@
 <template>
   <tr>
-    <th> {{user}} </th>
-    <th> {{Contact}} </th>
-    <th> {{Country}} </th>
+    <th> {{user.username}} </th>
+    <th> {{user.email}} </th>
+    <th> <button>Change Password</button> </th>
+    <th> {{user.createdAt}} </th>
+    <th> <input type="checkbox"> Give Permissions</th>
   </tr>
 </template>
 <script>
@@ -15,5 +17,10 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
+
+tr {
+    border-collapse: collapse;
+}
+
 </style>
