@@ -20,7 +20,7 @@
   }
   </script>
   
-  <style>
+  <style scoped>
   
   .cartItems{
     border:solid black 5px;
