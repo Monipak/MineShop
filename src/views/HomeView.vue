@@ -15,7 +15,12 @@
     
   </nav>
   <h1>This homework is not finished :( The backend & the authentification are done, there is a few frontend pages to finish and to link to the backend. Most features don't work !</h1>
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
+
 </template>
 
 <script>

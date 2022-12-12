@@ -35,6 +35,7 @@ export default {
         }
     },
     created(){
+        console.log("called")
         this.qt = this.product.quantity;
     },
     updated(){

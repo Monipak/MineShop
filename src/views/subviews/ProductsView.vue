@@ -35,22 +35,22 @@ export default {
         //addtocart
         if (itemComponent.qt) {
           if (itemComponent.qt == 1)
-            itemComponent.setButtonVisibility("plus", false);
+            itemComponent.setButtonColor("plus", false);
 
           if (this.cart[id]) this.cart[id] += 1;
           else this.cart[id] = 1;
           if (--itemComponent.qt)
-            itemComponent.setButtonVisibility("minus", true);
+            itemComponent.setButtonColor("minus", true);
         }
       } else {
         //putbackfromcart
         if (this.cart[id]) {
           if (!itemComponent.qt)
-            itemComponent.setButtonVisibility("plus", true);
+            itemComponent.setButtonColor("plus", true);
           if (this.cart[id] > 1) this.cart[id] -= 1;
           else {
             delete this.cart[id];
-            itemComponent.setButtonVisibility("minus", false);
+            itemComponent.setButtonColor("minus", false);
           }
           itemComponent.qt += 1;
         }
