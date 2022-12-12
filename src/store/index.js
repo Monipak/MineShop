@@ -14,7 +14,7 @@ export default createStore({
     productsLoaded: false,
     users: {},
     rates: {},
-    currentReviews: {},
+    currentReviews: [],
     cart: {},
   },
   getters: {

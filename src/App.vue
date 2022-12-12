@@ -18,7 +18,7 @@ export default{
   },
   methods:{
     debug(){
-          
+      console.log(this.$store.getters.allProducts)
     },
     debug2(){
      console.log(this.$store.getters.currentReviews)

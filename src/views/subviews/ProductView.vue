@@ -10,7 +10,9 @@
     </div>
 
     <AddReview v-if="this.$route.meta.role == 'user'"/>
-    <ReviewCard v-for="review in reviews" :key="review.id" :review="review"/>
+
+    <ReviewCard v-for="review in reviews" :key="review.id" v-bind:review="review" />
+
 
 </template>
 
@@ -33,11 +35,14 @@ export default{
     },
     methods:{
         test(){
-            console.log(this.reviews)
+            console.log(this.$store.getters.currentReviews,this.reviews)
+            
         }
     },
     created(){
+        console.log(this.reviews)
         this.$store.dispatch("getProductReviews",this.$route.params.id)
+        setTimeout(this.$forceUpdate, 1000); //needed to display reviews :/
     }
 }
 </script>

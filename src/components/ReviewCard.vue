@@ -7,12 +7,21 @@
 
 <script>
 export default{
-    created() {
-        
+    props:{
+        review : {
+            type:Object,
+            required:true
+        }
+    },
+    beforeCreate() {
+        console.log("hihi")
     }
 }
 </script>
 
-<style>
-
+<style scope>
+.review {
+    height: 200px;
+    background-color: white;
+}
 </style>
