@@ -20,6 +20,7 @@ exports.create = (req, res) => {
     price: req.body.price,
     image: req.body.image,
     quantity: req.body.quantity,
+    category: req.body.category
   };
 
   Products.create(product)

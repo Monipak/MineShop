@@ -19,19 +19,27 @@ export default {
   },
   loadEveryUsers() {
     return apiClient.get("/api/users", {
-      headers: { "x-access-token": store.getters.getToken }
+      headers: { "x-access-token": store.getters.getToken },
     });
   },
   loadEveryProduct() {
-    return apiClient.get('/api/products')
+    return apiClient.get("/api/products");
   },
   getRate(id) {
-    return apiClient.get('/api/products/' + id + '/average')
+    return apiClient.get("/api/products/" + id + "/average");
   },
   setProductQuantity(payload) {
-    console.log("here")
-    return apiClient.patch('/api/products/' + payload.id + '/quantity', { quantity: payload.quantity }, {
-      headers: { "x-access-token": store.getters.getToken }
-    })
-  }
+    return apiClient.patch(
+      "/api/products/" + payload.id + "/quantity",
+      { quantity: payload.quantity },
+      {
+        headers: { "x-access-token": store.getters.getToken },
+      }
+    );
+  },
+  addProduct(product) {
+    return apiClient.post("/api/products", product, {
+      headers: { "x-access-token": store.getters.getToken },
+    });
+  },
 };

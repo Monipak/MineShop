@@ -4,7 +4,10 @@
   </div>
   <button @click="debug">DEBUG</button>
   <button @click="debug2">DEBUG2</button>
-  <router-view/>
+  <div id="apptab">
+    <router-view/>
+  </div>
+  
 </template>
 
 <script>
@@ -28,6 +31,9 @@ export default{
 </script>
 
 <style>
+#apptab {
+  min-height: 820px;
+}
 #title {
   height: 150px;
 }
