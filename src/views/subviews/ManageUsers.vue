@@ -39,13 +39,14 @@ export default {
 }
 
 .tablewha{
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 15%;
+  margin-right: 15%;
   border-spacing: 0px;
   padding: 20px;
   background-color: rgba(64, 64, 64, 0.5);
   border-radius: 25px;
   border: 5px solid black;
+  width: 70%;
 }
 
 
