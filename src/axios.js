@@ -22,4 +22,10 @@ export default {
       headers: { "x-access-token": store.getters.getToken }
     });
   },
+  loadEveryProduct(){
+    return apiClient.get('/api/products')
+  },
+  getReview(id){
+    return apiClient.get('/api/products/'+id+'/average')
+  }
 };
