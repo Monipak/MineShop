@@ -1,6 +1,6 @@
 <template>
     <div class="item" ref="item">
-        <div class="name">
+        <div class="name" @click="this.$router.push('/products/'+product.id)">
             <h4>{{ product.name }}</h4>
         </div>
         <img v-bind:src="product.image" />
