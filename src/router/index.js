@@ -7,8 +7,10 @@ import HomeUserView from "../views/HomeUserView.vue";
 import LoginView from "../views/subviews/LoginView.vue";
 import RegisterView from "../views/subviews/RegisterView.vue";
 import ProductsView from "../views/subviews/ProductsView.vue";
+import ProductView from "../views/subviews/ProductView.vue";
 import CartView from "../views/subviews/CartView.vue";
-import ManageUsers from "../views/subviews/ManageUsers.vue"
+import ManageUsers from "../views/subviews/ManageUsers.vue";
+
 import store from "@/store";
 
 //import store from "../store/index.js";
@@ -22,6 +24,7 @@ const routes = [
       { path: "/login", component: LoginView },
       { path: "/register", component: RegisterView },
       { path: "/products", name: "guestProducts", component: ProductsView },
+      { path: "/products/:id", name:"guestProduct",component: ProductView}
     ],
   },
   {
@@ -31,7 +34,8 @@ const routes = [
     meta: { role: "admin" },
     children: [
       {path:"/userTab", component: ManageUsers},
-      {path:"/products", name: "adminProducts", component:ProductsView}
+      {path:"/products", name: "adminProducts", component:ProductsView},
+      { path: "/products/:id", name:"adminProduct",component: ProductView}
     ]
   },
   {
@@ -41,7 +45,8 @@ const routes = [
     meta: { role: "user" },
     children: [
       { path: "/products", name: "userProducts", component: ProductsView },
-      { path: "/cart", name:"cart", component:CartView}
+      { path: "/cart", name:"cart", component:CartView},
+      { path: "/products/:id", name:"userProduct",component: ProductView}
     ],
   },
 ];
