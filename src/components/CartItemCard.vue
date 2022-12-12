@@ -1,6 +1,6 @@
 <template>
 <div class="items">
-    <p>{{ item.name }}</p>
+    <h2>{{ item.name }}</h2>
     <img :src="item.img">
     <p>{{ item.description }}</p>
     <p>QT: {{ item.qt}}   
@@ -27,15 +27,16 @@ export default {
         text-align: center;
         color: #2c3e50;
         border: solid black 5px;
+        font-size: x-large;
         padding: 20px;
         margin: 10px;
-        max-width: 400px;
-        max-height: 400px;
+        width: 1200px;
+        height: 600px;
         border-radius: 40px;
         }
     img {
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 300px;
     }
 
 
