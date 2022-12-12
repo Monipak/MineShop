@@ -14,7 +14,7 @@ export default createStore({
     productsLoaded: false,
     privateData: {},
     rates: {},
-    cart: {}
+    cart: {},
   },
   getters: {
     userInfo(state) {
@@ -30,17 +30,17 @@ export default createStore({
       return state.privateData.users;
     },
     allProducts(state) {
-       return state.products;
+      return state.products;
     },
     productsLoaded(state) {
-      return state.productsLoaded
+      return state.productsLoaded;
     },
     cart(state) {
-      return state.cart
+      return state.cart;
     },
     rates(state) {
-      return state.rates
-    }
+      return state.rates;
+    },
   },
   mutations: {
     SET_USER_INFO(state, payload) {
@@ -64,21 +64,23 @@ export default createStore({
     SET_PRODUCTS(state, products) {
       state.products = products;
     },
-    SET_LOADED(state){
+    SET_LOADED(state) {
       state.productsLoaded = true;
     },
     SET_RATE(state, payload) {
       state.rates[payload.id] = payload.rate;
     },
     SET_CART(state, cart) {
-      state.cart = cart
+      state.cart = cart;
     },
     SET_PRODUCT_QUANTITY(state, payload) {
       state.products.forEach((product) => {
-        if (product.id == payload.id)
-          product.quantity = payload.quantity
-        return
-      })
+        if (product.id == payload.id) product.quantity = payload.quantity;
+        return;
+      });
+    },
+    ADD_PRODUCT(state,product){
+      state.products.push(product)
     }
   },
   actions: {
@@ -106,19 +108,25 @@ export default createStore({
       });
     },
     getRates(context) {
-      context.getters.allProducts.forEach(product => {
-        axiosHandler.getRate(product.id).then(rate => {
-          context.commit("SET_RATE", { id: product.id, rate: rate.data })
-        })
-      })
+      context.getters.allProducts.forEach((product) => {
+        axiosHandler.getRate(product.id).then((rate) => {
+          context.commit("SET_RATE", { id: product.id, rate: rate.data });
+        });
+      });
       context.commit("SET_LOADED");
     },
     setProductQuantity(context, payload) {
-
-      return axiosHandler.setProductQuantity(payload)
-      .then(context.commit("SET_PRODUCT_QUANTITY", payload))
-      .catch(error => console.log(error))
-    }
+      return axiosHandler
+        .setProductQuantity(payload)
+        .then(context.commit("SET_PRODUCT_QUANTITY", payload))
+        .catch((error) => console.log(error));
+    },
+    addProduct(context, product) {
+      return axiosHandler
+        .addProduct(product)
+        .then(context.commit("ADD_PRODUCT", product))
+        .catch((error) => console.log("err"+error));
+    },
   },
   plugins: [vuexLocal.plugin],
 });

@@ -19,6 +19,10 @@ module.exports = (sequelize, Sequelize) => {
         quantity: {
             type: Sequelize.INTEGER,
             allowNull: false
+        },
+        category: {
+            type: Sequelize.STRING,
+            allowNull: false
         }
     }
     )
