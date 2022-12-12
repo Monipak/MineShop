@@ -9,9 +9,9 @@
             <button @click="this.$emit('qtEvent',this,false); " class="minus" ref="minus">-</button>
             <button @click="this.$emit('qtEvent',this,true);" class="plus" ref="plus">+</button>
         </div>
-        <div class="rating">
-            <img src="https://i.imgur.com/dm2TUZC.png" />
-            <div  class="rating-stars"><img ref="fullstars" src="https://imgur.com/eif22DG.png" /></div>
+        <div ref="emptystars" class="rating">
+            <img  src="https://i.imgur.com/dm2TUZC.png" />
+            <div ref="fullstarsdiv" class="rating-stars"><img ref="fullstars" src="https://imgur.com/eif22DG.png" /></div>
         </div>
     </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     data(){
         return {
             qt:0,
-            rgb: [140,140,140],
+            rgb: [140,140,140]
         }
     },
     name : "ItemComponent",
@@ -31,11 +31,21 @@ export default {
             required: true
         },
         rate:{
+            type: Object,
             required: true
         }
     },
     created(){
         this.qt = this.product.quantity;
+        
+        
+    },
+    mounted() {
+        this.$refs.fullstars.style.marginRight = "-" + (380-(76*this.rate)) + "px";
+        if(this.$route.meta.role != 'user'){
+            this.$refs.emptystars.style.marginTop = "25px";
+            this.$refs.fullstarsdiv.style.bottom = "38px";
+        }
     },
     updated(){
         this.$refs.fullstars.style.marginRight = "-" + (380-(76*this.rate)) + "px";
