@@ -14,6 +14,7 @@
     </div>
     
   </nav>
+  <h1>This homework is not finished :( The backend & the authentification are done, there is a few frontend pages to finish and to link to the backend. Most features don't work !</h1>
   <router-view />
 </template>
 
