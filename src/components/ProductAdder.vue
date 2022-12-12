@@ -1,44 +1,33 @@
 <template>
-    <form name="myForm">
+    <form class="ProductForm">
         <!--
-        <div class="Event_Type">
-            <h1 >Product adder</h1></div>
-             
-        <div>
+        <div class="ProductCategory">
+            <h4>Product adder</h4>
             <select v-model="category" required>
                 <option disabled value="">Please select one category</option>
-                <option value="Ecology" >Ecology</option>
-                <option value="Entertainment" >Entertainment</option>
-                <option value="Charity" >Charity</option>
-                <option value="Animals" >Animals</option>
-                <option value="Education" >Education</option>
-                <option value="Housing" >Housing</option>
-                <option value="Alimentation" >Alimentation</option>
+                <option value="block">Block</option>
+                <option value="tool">Tool</option>
+                <option value="food">Food</option>
+                <option value="misc">Miscenaleous</option>
             </select>
         </div>
         -->
-        <div class="Event_Details">
-            <p >Title</p>
-            <input v-model="title" type="text" placeholder="Title" title="Give a title to your event" required>
+        <div class="Product">
+            <h4>Name</h4>
+            <input v-model="name" type="text" placeholder="Name of the product" required>
 
-            <p>Description</p>
-            <input v-model="description" type="text" placeholder="Dexcription" title="Describe the event here" required>
+            <h4>Description</h4>
+            <input v-model="description" type="text" placeholder="Description of the product" required>
         </div>
 
-        <div class="Event_Location">
-            <h1 >Where is your event ?</h1>
-            <p >Location</p>
-            <input v-model="location" type="text" placeholder="Location" title="Where is your event located ?" required>
+        <div class="ProductDetails">
+            <h4>Price</h4>
+            <input v-model="price" type="text" placeholder="Price of the product" required>
+            <h4>Price</h4>
+            <input v-model="QT" type="text" placeholder="Amount of the product" required>
         </div>
 
-        <div class="Event_Time">
-            <h1 >When is your event ?</h1>
-            <p >Date</p>
-            <input v-model="date" type="text" placeholder="Enter the date of your event" required>
-            <p >Time</p>
-            <input v-model="time" type="text" placeholder="Enter the time of your event" required>
-        </div>
-            <button v-on:click="submitEvent()" type="submit" style="margin-top: 20px;">Add New Event</button>
+        <button  v-on:click="null" type="submit" style="margin-top: 20px;margin-bottom: 10px;width:100px;margin-left: auto;margin-right: auto;">Add New Event</button>
     </form>
 
 </template>
@@ -48,7 +37,27 @@
 
 </script>
 
-<style>
+<style scoped>
 
+.ProductForm{
+    height: auto;
+    width: 400px;
+    background-color: white;
+    color: black;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: rgb(75,75,75) solid 2px;
+    border-radius: 25px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ProductForm input,button{
+    border-radius: 5px;
+    border-color: rgb(75,75,75);
+}
 
 </style>
