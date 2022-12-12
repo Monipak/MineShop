@@ -2,8 +2,8 @@
 <div class="items">
     <h2>{{ item.name }}</h2>
     <img :src="item.image">
-    <p>{{ item.description }}</p>
-    <p>QT: {{ item.qt}}   
+    <div class="description"><p class="descriptionText">{{ item.description }}</p></div>
+    <p class="quantity">QT: {{ item.qt}}   
     <br>${{ item.price }}</p>
 </div>
 </template>
@@ -30,14 +30,26 @@ export default {
         font-size: x-large;
         padding: 20px;
         margin: 10px;
-        height: 520px;
-        width: 400px;
+        height: 500px;
+        width: 700px;
         border-radius: 40px;
         background-color: #FFFFFF;
         }
     img {
         height: 240px;
     }
+    .description{
+        overflow: scroll;
+        overflow-x: hidden;
+        overflow-y:auto;
+        height: 65px;
+        border: solid black 3px;
+        border-radius: 20px;
+        margin: 5px;
+    }
 
+    .descriptionText{
+        margin: 5px;
+    }
 
 </style>
