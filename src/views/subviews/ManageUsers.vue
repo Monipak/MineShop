@@ -9,6 +9,7 @@
     <th>Change Password</th>
     <th>Date of creation</th>
     <th>Change perms</th>
+    <th>Ban User</th>
   </tr>
   <UserCard v-for="user in this.users" :key="user.id" v-bind:user="user" />
   </table>
@@ -37,6 +38,7 @@ export default {
   font: bold;
   font-size: larger;
   background-color: lightgray;
+  color: black;
 }
 
 .tablewha{
@@ -56,7 +58,7 @@ export default {
 th {
   text-align: center;
   padding: 8px;
-  border: solid black 2px;
+  border: solid grey 2px;
   border-collapse: collapse;
   border-spacing: 0px;
   
