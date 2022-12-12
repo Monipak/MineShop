@@ -9,7 +9,7 @@ const vuexLocal = new VuexPersistence({
 export default createStore({
   state: {
     user: {},
-    products: {},
+    products: [],
     islogged: false,
     productsLoaded: false,
     privateData: {},

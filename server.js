@@ -1,4 +1,4 @@
-const INIT = false
+const INIT = true
 const express = require("express");
 const cors = require("cors");
 var corsOptions = {
