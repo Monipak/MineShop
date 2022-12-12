@@ -17,6 +17,9 @@ export default {
   register(userInfo) {
     return apiClient.post("/api/users/register", userInfo);
   },
+  loadUser(id){
+    return apiClient.get("/api/users/"+id)
+  },
   loadEveryUsers() {
     return apiClient.get("/api/users", {
       headers: { "x-access-token": store.getters.getToken },
@@ -54,5 +57,12 @@ export default {
     return apiClient.delete("/api/users/" + id,
     { headers: { "x-access-token": store.getters.getToken } })
     .catch(error=>error);
+  },
+  getReviews(id){
+    return apiClient.get('/api/products/'+id+'/reviews')
+  },
+  deleteReview(id){
+    return apiClient.delete('/api/reviews/'+id,
+    { headers: { "x-access-token": store.getters.getToken } })
   }
 };

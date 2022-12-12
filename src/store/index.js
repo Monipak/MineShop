@@ -14,6 +14,7 @@ export default createStore({
     productsLoaded: false,
     users: {},
     rates: {},
+    currentReviews: {},
     cart: {},
   },
   getters: {
@@ -41,6 +42,9 @@ export default createStore({
     rates(state) {
       return state.rates;
     },
+    currentReviews(state){
+      return state.currentReviews
+    }
   },
   mutations: {
     SET_USER_INFO(state, payload) {
@@ -79,9 +83,12 @@ export default createStore({
         return;
       });
     },
-    ADD_PRODUCT(state,product){
-      state.products.push(product)
-    }
+    ADD_PRODUCT(state, product) {
+      state.products.push(product);
+    },
+    SET_CURRENT_REVIEWS(state, reviews) {
+      state.currentReviews = reviews;
+    },
   },
   actions: {
     login(context, userInfo) {
@@ -93,7 +100,7 @@ export default createStore({
     },
     register(context, userInfo) {
       return axiosHandler.register(userInfo).then(() => {
-        context.dispatch("login",userInfo)
+        context.dispatch("login", userInfo);
       });
     },
 
@@ -125,17 +132,37 @@ export default createStore({
       return axiosHandler
         .addProduct(product)
         .then(context.commit("ADD_PRODUCT", product))
-        .catch((error) => console.log("err"+error));
+        .catch((error) => console.log("err" + error));
     },
-    changePassword(context,payload){
-      return axiosHandler.changePassword(payload)
+    changePassword(context, payload) {
+      return axiosHandler.changePassword(payload);
     },
-    banUser(context,id){
-      return axiosHandler.banUser(id).then(()=>context.dispatch("loadAdminData")).catch(error => error)
+    banUser(context, id) {
+      return axiosHandler
+        .banUser(id)
+        .then(() => context.dispatch("loadAdminData"))
+        .catch((error) => error);
     },
-    makeUserAdmin(context,payload){
-      return axiosHandler.makeAdmin(payload).then(()=>context.dispatch("loadAdminData"))
-    }
+    makeUserAdmin(context, payload) {
+      return axiosHandler
+        .makeAdmin(payload)
+        .then(() => context.dispatch("loadAdminData"));
+    },
+    getProductReviews(context, productId) {
+      var newReviews = []
+      return axiosHandler.getReviews(productId).then((reviews) => {
+        if (reviews.data){
+          reviews.data.forEach(review => {
+            var newReview = structuredClone(review)
+            axiosHandler.loadUser(review.user).then(user =>{
+              newReview.user = user.data.username
+              newReviews.push(newReview)
+            } )
+          })
+        }
+        context.commit("SET_CURRENT_REVIEWS",newReviews)
+      });
+    },
   },
   plugins: [vuexLocal.plugin],
 });

@@ -42,7 +42,7 @@ export default {
             default: 5
         },
     },
-    activated() {
+    mounted() {
         this.$refs.fullstars.style.marginRight =
             "-" + (380 - 76 * this.rate.rate) + "px";
         var cartQt = this.$store.getters.cart[this.product.id]
