@@ -31,11 +31,8 @@ export default {
             required: true
         },
         rate:{
-            type:Object
+            required: true
         }
-    },
-    created(){
-        this.qt = this.product.quantity;
     },
     mounted() {
         this.$refs.fullstars.style.marginRight = "-" + (380-(76*this.rate.rate)) + "px";
@@ -43,9 +40,25 @@ export default {
             this.$refs.emptystars.style.marginTop = "25px";
             this.$refs.fullstarsdiv.style.bottom = "38px";
         }
+        var cartQt = this.$store.getters.cart[this.product.id] ? this.$store.getters.cart[this.product.id] : 0
+        this.qt = this.product.quantity - cartQt;
+        if (cartQt){
+            if (cartQt == this.product.quantity){
+                this.setButtonColor("plus",false)
+            }
+                
+            else
+            this.setButtonColor("minus",true)
+        } else {
+            this.setButtonColor("minus",false)
+        }
+                
+        console.log(this.qt,this.$store.getters.cart[this.product.id])
     },
     updated(){
-        this.$refs.fullstars.style.marginRight = "-" + (380-(76*this.rate.rate)) + "px";
+        if (this.qt<=5)
+            this.color()
+        this.$refs.fullstars.style.marginRight = "-" + (380-(76*this.rate)) + "px";
     },
     methods:{
         setButtonColor(button,mode){
