@@ -2,7 +2,7 @@
 
     <div class="review">
         <h2>Add your review</h2>
-        <textarea style="width: 400px;resize: none;" cols="40" rows="5" v-model="reviewText" type="text"
+        <textarea style="width: 500px;resize: none;" cols="40" rows="5" v-model="reviewText" type="text"
             placeholder="Add your review" required>
       </textarea>
 
@@ -79,7 +79,7 @@ body {
 
 .review {
     margin-top: 50px;
-    height: 300px;
+    height: 330px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
