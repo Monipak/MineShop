@@ -16,7 +16,11 @@
       <a @click="logout">Logout</a>
     </div>
   </nav>
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 </template>
 <script>
 export default {

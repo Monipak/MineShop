@@ -14,6 +14,7 @@ export default createStore({
     productsLoaded: false,
     privateData: {},
     rates: {},
+    cart :{}
   },
   getters: {
     userInfo(state) {
@@ -30,6 +31,9 @@ export default createStore({
     },
     allProducts(state) {
       return state.products;
+    },
+    cart(state){
+      return state.cart
     },
     rates(state){
       return state.rates
@@ -63,7 +67,6 @@ export default createStore({
     },
     SET_CART(state,cart){
       state.cart = cart
-      console.log(cart)
     }
   },
   actions: {

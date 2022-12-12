@@ -1,7 +1,7 @@
 <template>
 <div class="items">
     <h2>{{ item.name }}</h2>
-    <img :src="item.img">
+    <img :src="item.image">
     <p>{{ item.description }}</p>
     <p>QT: {{ item.qt}}   
     <br>${{ item.price }}</p>
@@ -30,13 +30,13 @@ export default {
         font-size: x-large;
         padding: 20px;
         margin: 10px;
-        width: 1200px;
-        height: 600px;
+        height: 520px;
+        width: 400px;
         border-radius: 40px;
+        background-color: #FFFFFF;
         }
     img {
-        width: 300px;
-        height: 300px;
+        height: 240px;
     }
 
 
