@@ -30,7 +30,7 @@ export default createStore({
       return state.privateData.users;
     },
     allProducts(state) {
-      return state.products;
+       return state.products;
     },
     productsLoaded(state) {
       return state.productsLoaded
@@ -63,6 +63,8 @@ export default createStore({
     },
     SET_PRODUCTS(state, products) {
       state.products = products;
+    },
+    SET_LOADED(state){
       state.productsLoaded = true;
     },
     SET_RATE(state, payload) {
@@ -108,7 +110,8 @@ export default createStore({
         axiosHandler.getRate(product.id).then(rate => {
           context.commit("SET_RATE", { id: product.id, rate: rate.data })
         })
-      });
+      })
+      context.commit("SET_LOADED");
     },
     setProductQuantity(context, payload) {
 

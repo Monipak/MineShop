@@ -39,7 +39,7 @@ export default {
             required: true,
         },
         rate: {
-            required: true,
+            default: 5
         },
     },
     mounted() {

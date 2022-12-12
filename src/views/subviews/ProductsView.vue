@@ -21,7 +21,7 @@ export default {
     ItemComponent,
   },
   computed: {
-    ...mapGetters({ products: "allProducts", rates: "rates", cart:"cart" }),
+    ...mapGetters({products : "allProducts",rates:"rates", cart:"cart" })
   },
   methods: {
     incOrDecCart(itemComponent, mode) {

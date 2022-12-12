@@ -10,7 +10,8 @@
 <script>
 export default{
   created(){
-    this.$store.dispatch("loadProducts").then(this.$store.dispatch("getRates"))
+    this.$store.dispatch("loadProducts")
+    this.$store.dispatch("getRates")
   },
   methods:{
     debug(){
