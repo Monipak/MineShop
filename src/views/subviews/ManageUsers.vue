@@ -42,15 +42,20 @@ export default {
 }
 
 .tablewha{
-  padding-left: 25%;
+  margin-left: 25%;
+  margin-right: 25%;
   border-spacing: 0px;
+  padding: 20px;
+  background-color: rgba(64, 64, 64, 0.5);
+  border-radius: 25px;
+  border: 5px solid black;
 }
 
 .table{
   border-spacing: 0px;
   border-collapse: collapse;
-  border: 1px solid black;
   width: 100%;
+  
 
 
 }
