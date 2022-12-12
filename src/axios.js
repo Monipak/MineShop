@@ -29,7 +29,8 @@ export default {
     return apiClient.get('/api/products/' + id + '/average')
   },
   setProductQuantity(payload) {
-    return apiClient.patch('/api/products/' + payload.id + '/quantity',{quantity:payload.quantity}, {
+    console.log("here")
+    return apiClient.patch('/api/products/' + payload.id + '/quantity', { quantity: payload.quantity }, {
       headers: { "x-access-token": store.getters.getToken }
     })
   }

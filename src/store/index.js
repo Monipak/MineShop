@@ -91,7 +91,7 @@ export default createStore({
     },
     register(context, userInfo) {
       return axiosHandler.register(userInfo).then(() => {
-        context.commit("SET_USER_INFO", userInfo);
+        context.dispatch("login",userInfo)
       });
     },
 
