@@ -76,6 +76,12 @@ export default {
             }
             this.$refs.item.style.backgroundColor = "rgb(" + this.rgb[0] +',' + this.rgb[1] + ',' + this.rgb[2] + ')';
         },
+        setButtonVisibility(button,mode){
+            if (mode)
+                this.$refs[button].style.visibility = "visible";
+            else
+                this.$refs[button].style.backgroundColor = "grey";
+        },
         
     }
     

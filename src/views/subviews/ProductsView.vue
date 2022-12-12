@@ -3,25 +3,30 @@
 
   <div id="shop">
     <ItemComponent
-    v-for="product in this.products"
-    :key="product.id"
-    v-bind:product="product"
-    v-bind:rate="rates[product.id].rate"
-    @qtEvent="incOrDecCart"
-  />
-  </div>    
+      v-for="product in this.products"
+      :key="product.id"
+      v-bind:product="product"
+      v-bind:rate="rates[product.id].rate"
+      @qtEvent="incOrDecCart"
+    />
+  </div>
 </template>
 <script>
 import ProductAdder from "../../components/ProductAdder.vue";
 import ItemComponent from "@/components/ItemComponent.vue";
 import { mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      cart : {}
+    }
+  },
   components: {
     ProductAdder,
     ItemComponent,
   },
   computed: {
-    ...mapGetters({ products: "allProducts" , rates:"rates"}),
+    ...mapGetters({ products: "allProducts", rates: "rates" }),
   },
   methods: {
     incOrDecCart(itemComponent, mode) {
@@ -50,7 +55,7 @@ export default {
           itemComponent.qt += 1;
         }
       }
-      this.$store.commit("modifyCart", this.cart);
+      this.$store.commit("SET_CART", this.cart);
       if (itemComponent.qt <= 5) itemComponent.color();
     },
   },

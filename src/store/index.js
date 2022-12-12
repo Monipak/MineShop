@@ -32,7 +32,6 @@ export default createStore({
       return state.products;
     },
     rates(state){
-      console.log(state.rates)
       return state.rates
     }
   },
@@ -62,6 +61,10 @@ export default createStore({
     SET_RATE(state, payload) {
       state.rates[payload.id] = payload.rate;
     },
+    SET_CART(state,cart){
+      state.cart = cart
+      console.log(cart)
+    }
   },
   actions: {
     login(context, userInfo) {
