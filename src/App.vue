@@ -14,7 +14,7 @@ export default{
   },
   methods:{
     debug(){
-      console.log(this.$store.getters.rates)
+      console.log(this.$store.getters.cart)
     }
   }
 }

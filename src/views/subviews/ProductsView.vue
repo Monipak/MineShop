@@ -16,21 +16,18 @@ import ProductAdder from "../../components/ProductAdder.vue";
 import ItemComponent from "@/components/ItemComponent.vue";
 import { mapGetters } from "vuex";
 export default {
-  data() {
-    return {
-      cart : {}
-    }
-  },
   components: {
     ProductAdder,
     ItemComponent,
   },
   computed: {
-    ...mapGetters({ products: "allProducts", rates: "rates" }),
+    ...mapGetters({ products: "allProducts", rates: "rates", cart:"cart" }),
   },
   methods: {
     incOrDecCart(itemComponent, mode) {
+      
       var id = itemComponent.product.id;
+      console.log(itemComponent.qt,this.cart[id])
       if (mode) {
         //addtocart
         if (itemComponent.qt) {
@@ -57,6 +54,7 @@ export default {
       }
       this.$store.commit("SET_CART", this.cart);
       if (itemComponent.qt <= 5) itemComponent.color();
+      console.log(itemComponent.qt,this.cart[id])
     },
   },
 };
