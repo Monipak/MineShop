@@ -31,6 +31,7 @@ export default {
         margin: 10px;
         max-width: 400px;
         max-height: 400px;
+        border-radius: 40px;
         }
     img {
         width: 200px;
