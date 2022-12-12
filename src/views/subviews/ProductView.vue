@@ -9,7 +9,7 @@
     <p>Cost: {{product.price}}</p>
     </div>
 
-    <AddReview v-if="this.$route.meta.role == 'user'"/>
+    <AddReview v-if="this.$route.meta.role == 'user'" @update="this.$forceUpdate"/>
     <ReviewCard v-for="review in reviews" :key="review.id" :review="review"/>
 
 </template>
