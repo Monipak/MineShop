@@ -1,4 +1,4 @@
-/*
+
 module.exports = {
     HOST: "finalserver.c0pj4jozbnof.eu-west-2.rds.amazonaws.com",
     PORT: 3306,
@@ -13,7 +13,8 @@ module.exports = {
         idle: 10000
     }
 };
-*/
+
+/*
 module.exports = {
     HOST: "localhost",
     PORT: 3306,
@@ -27,4 +28,4 @@ module.exports = {
         acquire: 30000,
         idle: 10000
     } 
-}
+} */
