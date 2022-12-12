@@ -9,8 +9,11 @@ const vuexLocal = new VuexPersistence({
 export default createStore({
   state: {
     user: {},
+    products: {},
     islogged: false,
+    productsLoaded: false,
     privateData: {},
+    rates: {},
   },
   getters: {
     userInfo(state) {
@@ -22,8 +25,14 @@ export default createStore({
     getToken(state) {
       return state.user.token;
     },
-    allUsers(state){
+    allUsers(state) {
       return state.privateData.users;
+    },
+    allProducts(state) {
+      return state.products;
+    },
+    rates(state){
+      return state.rates
     }
   },
   mutations: {
@@ -45,6 +54,17 @@ export default createStore({
     SET_PRIVATE_USERS(state, users) {
       state.privateData.users = users;
     },
+    SET_PRODUCTS(state, products) {
+      state.products = products;
+      state.productsLoaded = true;
+    },
+    SET_RATE(state, payload) {
+      state.rates[payload.id] = payload.rate;
+    },
+    SET_CART(state,cart){
+      state.cart = cart
+      console.log(cart)
+    }
   },
   actions: {
     login(context, userInfo) {
@@ -63,8 +83,20 @@ export default createStore({
     loadAdminData(context) {
       return axiosHandler.loadEveryUsers().then((users) => {
         context.commit("SET_PRIVATE_USERS", users.data);
-      })
+      });
     },
+    loadProducts(context) {
+      return axiosHandler.loadEveryProduct().then((products) => {
+        context.commit("SET_PRODUCTS", products.data);
+      });
+    },
+    getRates(context){
+      context.getters.allProducts.forEach(product => {
+        axiosHandler.getReview(product.id).then(rate=>{
+          context.commit("SET_RATE",{id:product.id,rate:rate.data})
+        })
+      });
+    }
   },
   plugins: [vuexLocal.plugin],
 });

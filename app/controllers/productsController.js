@@ -137,24 +137,19 @@ exports.averageReview = (req, res) => {
   Products.findByPk(req.params.id)
     .then((data) => {
       if (data) {
-        db.reviews
+        return db.reviews
           .sum("rate", { where: { productId: req.params.id } })
-          .then((sum) => {
-            return (
-              sum /
-              db.reviews
-                .count({ where: { productId: req.params.id } })
-                .then((count) => {
-                  return res.status(200).send({ rate: sum/count });
-                })
-            );
-          });
-        return;
+          .then((sum) =>
+            db.reviews
+              .count({ where: { productId: req.params.id } })
+              .then((count) => {
+                res.status(200).send({ rate: count ? sum / count : 5 });
+              })
+          );
       }
-      res
+      return res
         .status(404)
         .send({ message: "COULDN'T FIND PRODUCT WITH ID " + req.params.id });
-      return;
     })
     .catch((error) => {
       res.status(500).send({
