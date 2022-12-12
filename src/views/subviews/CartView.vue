@@ -5,6 +5,8 @@
   <div class="cart">
     <cartBox v-for="item in items" :key="item.id" :item="item" />
   </div>
+  <div class="button">Confirm you cart's content</div>
+  <br>
 </template>
 
 <script>
@@ -64,5 +66,19 @@ export default {
 
 h1 {
   font-size: 28px;
+}
+
+.button{
+  color: black;
+  height: 50px;
+  line-height: 50px;
+  width: 250px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: aqua;
+  border: solid rgb(65, 117, 61) 5px;
+  border-radius: 25px;
+  font-size: larger;
 }
 </style>
