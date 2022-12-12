@@ -22,6 +22,8 @@
         </div>
 
         <div class="ProductDetails">
+            <h4>Image</h4>
+            <input v-model="image" type="text" placeholder="Link for the product's image" required>
             <h4>Price</h4>
             <input v-model="price" type="text" placeholder="Price of the product" required>
             <h4>Quantity</h4>
