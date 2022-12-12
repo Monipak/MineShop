@@ -5,8 +5,8 @@
         <div class="bottom">
             ${{product.price}} <br> QT: {{qt}}
         </div>
-        <div class="buttons">
-            <button @click="this.$emit('qtEvent',this,false);" class="minus" ref="minus">-</button>
+        <div class="buttons" v-if="this.$route.meta.role == 'user'">
+            <button @click="this.$emit('qtEvent',this,false); " class="minus" ref="minus">-</button>
             <button @click="this.$emit('qtEvent',this,true);" class="plus" ref="plus">+</button>
         </div>
         <div class="rating">
