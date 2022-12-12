@@ -1,6 +1,13 @@
 <template>
     <EditProduct v-if="this.$route.meta.role == 'admin'"/>
-    {{product.name}}
+
+    <div class="item">
+    <h1>{{product.name}}</h1>
+    <img :src="product.image">
+    <div class="description"><p class="descriptionText">{{ product.description }}</p></div>
+    <p>Cost: {{product.price}}</p>
+    </div>
+
     <AddReview v-if="this.$route.meta.role == 'user'"/>
     <ReviewCard v-for="review in reviews" :key="review.id" :review="review"/>
 
@@ -28,6 +35,22 @@ export default{
 }
 </script>
 
-<style>
-
+<style scoped>
+    .item{
+        margin-top: 50px;
+        height: 450px;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid black 5px;
+        border-radius: 25px;
+        background-color: rgba(64,64,64, 0.7);
+    }
+    .item h1{
+        padding: 10px;
+        font-size: 40px;
+    }
+    .item p{
+        font-size: 25px;
+    }
 </style>
