@@ -24,7 +24,7 @@ const routes = [
       { path: "/login", component: LoginView },
       { path: "/register", component: RegisterView },
       { path: "/products", name: "guestProducts", component: ProductsView },
-      { path: "/products/:id", name:"guestProduct",component: ProductView}
+      { path: "/products/:id", name: "guestProduct", component: ProductView },
     ],
   },
   {
@@ -33,10 +33,10 @@ const routes = [
     component: HomeAdminView,
     meta: { role: "admin" },
     children: [
-      {path:"/userTab", component: ManageUsers},
-      {path:"/products", name: "adminProducts", component:ProductsView},
-      { path: "/products/:id", name:"adminProduct",component: ProductView}
-    ]
+      { path: "/userTab", component: ManageUsers },
+      { path: "/products", name: "adminProducts", component: ProductsView },
+      { path: "/products/:id", name: "adminProduct", component: ProductView },
+    ],
   },
   {
     path: "/",
@@ -45,8 +45,8 @@ const routes = [
     meta: { role: "user" },
     children: [
       { path: "/products", name: "userProducts", component: ProductsView },
-      { path: "/cart", name:"cart", component:CartView},
-      { path: "/products/:id", name:"userProduct",component: ProductView}
+      { path: "/cart", name: "cart", component: CartView },
+      { path: "/products/:id", name: "userProduct", component: ProductView },
     ],
   },
 ];
@@ -56,20 +56,20 @@ const router = createRouter({
   routes,
 });
 
-function getRole(){
-  if (!store.getters.isLogged)
-    return "guest"
-  return store.getters.userInfo.perms ? "admin" : "user"
+function getRole() {
+  if (!store.getters.isLogged) return "guest";
+  return store.getters.userInfo.perms ? "admin" : "user";
 }
 
 router.beforeEach(async (to) => {
-  var role = getRole()
-  if (to.meta.role != role){
-    if (to.fullPath == "/")
-      return {name : role + "Home"}
-    else if (to.fullPath == "/products")
-      return {name : role + "Products"}
-    return '/'
+  var role = getRole();
+  if (to.meta.role != role) {
+    if (to.path == "/") return { name: role + "Home" };
+    else if (to.path.includes("/products")) {
+      if (!to.params.id) return { name: role + "Products" };
+      return { name: role + "Product", params :{id:to.params.id} };
+    }
+    return "/";
   }
 });
 
