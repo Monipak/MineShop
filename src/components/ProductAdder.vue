@@ -89,22 +89,22 @@ export default {
   methods: {
     addProduct() {
       if (
-        this.name == "" &&
-        this.category == "" &&
-        this.image == "" &&
+        this.name == "" ||
+        this.category == "" ||
+        this.image == "" ||
         this.description == ""
       ) {
         alert("One of the fields shouldn't be empty !");
-        return;
+      } else {
+        this.$store.dispatch("addProduct", {
+          name: this.name,
+          description: this.description,
+          image: this.image,
+          price: this.price,
+          quantity: this.qt,
+          category: this.category,
+        });
       }
-      this.$store.dispatch("addProduct", {
-        name: this.name,
-        description: this.description,
-        image: this.image,
-        price: this.price,
-        quantity: this.qt,
-        category: this.category
-      });
     },
   },
 };

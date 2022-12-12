@@ -16,7 +16,7 @@
       <a @click="logout">Logout</a>
     </div>
   </nav>
-  <router-view v-slot="{ Component }">
+  <router-view v-slot="{ Component }" >
     <keep-alive>
       <component :is="Component" />
     </keep-alive>
