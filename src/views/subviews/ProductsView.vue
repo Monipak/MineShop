@@ -27,7 +27,6 @@ export default {
     incOrDecCart(itemComponent, mode) {
       
       var id = itemComponent.product.id;
-      console.log(itemComponent.qt,this.cart[id])
       if (mode) {
         //addtocart
         if (itemComponent.qt) {
@@ -54,7 +53,6 @@ export default {
       }
       this.$store.commit("SET_CART", this.cart);
       if (itemComponent.qt <= 5) itemComponent.color();
-      console.log(itemComponent.qt,this.cart[id])
     },
   },
 };
