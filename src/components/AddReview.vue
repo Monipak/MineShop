@@ -2,12 +2,16 @@
 
 <div class="review">
         <h2>Add your review</h2>
-      <input
-        v-model="description"
+      <textarea
+        style="width: 400px;resize: none;"
+        cols="40" 
+        rows="5"
+        v-model="reviewText"
         type="text"
         placeholder="Add your review"
-        required
-      />
+        
+        required>
+      </textarea>
       <div class="rating">
   
   <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
@@ -72,7 +76,7 @@ opacity: 0.4;
 
 .review{
         margin-top: 50px;
-        height: 250px;
+        height: 300px;
         width: 70%;
         margin-left: auto;
         margin-right: auto;
