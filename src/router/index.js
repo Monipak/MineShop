@@ -7,6 +7,8 @@ import HomeUserView from "../views/HomeUserView.vue";
 import LoginView from "../views/subviews/LoginView.vue";
 import RegisterView from "../views/subviews/RegisterView.vue";
 import ProductsView from "../views/subviews/ProductsView.vue";
+import CartView from "../views/subviews/CartView.vue";
+import ManageUsers from "../views/subviews/ManageUsers.vue"
 import store from "@/store";
 
 //import store from "../store/index.js";
@@ -27,6 +29,10 @@ const routes = [
     name: "adminHome",
     component: HomeAdminView,
     meta: { role: "admin" },
+    children: [
+      {path:"/userTab", component: ManageUsers},
+      {path:"/products", name: "adminProducts", component:ProductsView}
+    ]
   },
   {
     path: "/",
@@ -35,6 +41,7 @@ const routes = [
     meta: { role: "user" },
     children: [
       { path: "/products", name: "userProducts", component: ProductsView },
+      { path: "/cart", name:"cart", component:CartView}
     ],
   },
 ];
@@ -52,13 +59,12 @@ function getRole(){
 
 router.beforeEach(async (to) => {
   var role = getRole()
-  console.log(role)
   if (to.meta.role != role){
     if (to.fullPath == "/")
       return {name : role + "Home"}
     else if (to.fullPath == "/products")
       return {name : role + "Products"}
-    return false
+    return '/'
   }
 });
 

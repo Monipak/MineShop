@@ -73,6 +73,13 @@ exports.findOne = (req, res) => {
   Users.findByPk(req.params.id)
     .then((data) => {
       if (data) {
+        data = {
+          id : data.id,
+          username: data.username,
+          email: data.email,
+          perms: data.perms,
+          createdAt: data.createdAt
+        }
         res.status(200).send(data);
         return;
       }

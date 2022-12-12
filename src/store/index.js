@@ -10,6 +10,7 @@ export default createStore({
   state: {
     user: {},
     islogged: false,
+    privateData: {},
   },
   getters: {
     userInfo(state) {
@@ -18,9 +19,16 @@ export default createStore({
     isLogged(state) {
       return state.islogged;
     },
+    getToken(state) {
+      return state.user.token;
+    },
+    allUsers(state){
+      return state.privateData.users;
+    }
   },
   mutations: {
     SET_USER_INFO(state, payload) {
+      state.islogged = true;
       state.user = {
         userId: payload.id,
         username: payload.username,
@@ -29,25 +37,34 @@ export default createStore({
         token: payload.accessToken,
       };
     },
-    SET_LOGGED(state,logged){
-      state.islogged = logged
-    }
+    UNSET_USER_INFO(state) {
+      state.islogged = false;
+      state.user = {};
+      state.privateData = {};
+    },
+    SET_PRIVATE_USERS(state, users) {
+      state.privateData.users = users;
+    },
   },
   actions: {
     login(context, userInfo) {
-      var promise = axiosHandler.logIn(userInfo);
-
-      promise
-        .then((response) => {
-          context.commit("SET_USER_INFO", response.data);
-          context.commit("SET_LOGGED", true)
-        })
-        .catch((error) => error); // do nothing as it is handled in vue
-      return promise;
+      return axiosHandler.logIn(userInfo).then((response) => {
+        context.commit("SET_USER_INFO", response.data);
+        if (context.getters.userInfo.perms)
+          return context.dispatch("loadAdminData");
+      });
     },
     register(context, userInfo) {
-      return axiosHandler.register(userInfo);
+      return axiosHandler.register(userInfo).then(() => {
+        context.commit("SET_USER_INFO", userInfo);
+      });
+    },
+
+    loadAdminData(context) {
+      return axiosHandler.loadEveryUsers().then((users) => {
+        context.commit("SET_PRIVATE_USERS", users.data);
+      })
     },
   },
-  plugins: [vuexLocal.plugin]
+  plugins: [vuexLocal.plugin],
 });

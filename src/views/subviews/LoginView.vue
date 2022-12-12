@@ -4,28 +4,29 @@
     rel="stylesheet"
     type="text/css"
   />
-    <div class="box">
-      <h1>Sign In</h1>
+  <div class="box" @keypress.enter="login">
+    <h1>Sign In</h1>
 
-      <input
-        type="text"
-        v-model="this.username"
-        placeholder="username"
-        class="field"
-      />
+    <input
+      type="text"
+      v-model="this.username"
+      placeholder="username"
+      class="field"
+    />
 
-      <!-- à modifier !!!-->
-      <input
-        type="text"
-        v-model="this.password"
-        placeholder="password"
-        class="field"
-      />
+    <!-- à modifier !!!-->
+    <input
+      type="text"
+      v-model="this.password"
+      placeholder="password"
+      class="field"
+    />
 
-      <div class="btn" @click="login">Sign In</div>
+    <div class="btn" @click="login">Sign In</div>
 
-      <router-link  class="btn" id="btn2" to="/register">Register</router-link>
-    </div>
+    <router-link class="btn" id="btn2" to="/register">Register</router-link>
+  </div>
+  <div id="errorMessage" ref="errorMessage"></div>
 </template>
 <script>
 export default {
@@ -46,9 +47,12 @@ export default {
           this.$router.push({ name: "userHome" });
         })
         .catch(
-          (error) =>
-            (this.$refs.errorMessage.innerHTML =
-              "Error while logging in : " + error.response.data.message)
+          (error) =>{
+            console.log(error)
+            this.$refs.errorMessage.innerHTML =
+              "Error while logging in : " + error.response.data.message
+            
+          }
         );
     },
     debug() {
@@ -141,5 +145,9 @@ h1 {
 
 #btn2:hover {
   background: #3594d2;
+}
+
+#errorMessage {
+  color: red;
 }
 </style>

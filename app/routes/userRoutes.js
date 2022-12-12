@@ -3,28 +3,28 @@ module.exports = (app) => {
   const middlewares = require("../middlewares/index.js");
 
   app.delete(
-    "/api/user/:id",
+    "/api/users/:id",
     user.ownerId,
     middlewares.authJwt.verifyToken,
     middlewares.authJwt.isAdminOrOwner,
     user.deleteOne
   );
   app.get(
-    "/api/user",
+    "/api/users",
     middlewares.authJwt.verifyToken,
     middlewares.authJwt.isAdmin,
     user.findAll
   );
-  app.get("/api/user/:id", user.findAll);
+  app.get("/api/users/:id", user.findOne);
   app.patch(
-    "/api/user/:id",
+    "/api/users/:id",
     user.ownerId,
     middlewares.authJwt.verifyToken,
     middlewares.authJwt.isAdminOrOwner,
     user.updateOne
   );
   app.patch(
-    "/api/user/:id/setPerms",
+    "/api/users/:id/setPerms",
     middlewares.authJwt.verifyToken,
     middlewares.authJwt.isAdmin,
     user.setPerms

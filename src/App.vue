@@ -16,15 +16,16 @@
 #products {
   grid-column: 2;
 }
-#register {
+#cart, #manageUsers{
+  grid-column: 3;
+}
+#register, #name{
   grid-column: 6;
 }
 #login {
   grid-column: 7;
 }
-#name {
-  grid-column: 6;
-}
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
