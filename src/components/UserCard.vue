@@ -1,7 +1,9 @@
 <template>
-    <div>
-        {{user.username}}
-    </div>
+  <tr>
+    <th> {{user}} </th>
+    <th> {{Contact}} </th>
+    <th> {{Country}} </th>
+  </tr>
 </template>
 <script>
 export default {
