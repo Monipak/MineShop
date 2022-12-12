@@ -18,7 +18,10 @@ export default{
       console.log(this.$store.dispatch("setProductQuantity",{id:2,quantity:120}))      
     },
     debug2(){
-      console.log(this.$store.getters.allProducts.filter(p => p.id == 2))
+      console.log(this.$store.getters.cart)
+      for (var i in this.$store.getters.cart){
+        console.log(i,this.$store.getters.cart[i])
+      }
     }
   }
 }
