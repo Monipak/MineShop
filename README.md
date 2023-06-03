@@ -1,17 +1,8 @@
-# final-project
-## Project setup
-il faut avoir axios aussi, mais pas besoin de ```vue add axios```
-```
-vue add router
-vue add vuex
-vue add vuex-persist
-```
-
-### Lancer le serveur vuex (dev)
-```
-npm run serve
-```
-### Lancer le serveur local
-```
-npm run start
-```
+# MineShop
+This project was developped as a full-stack web application, resembling a shop. The primary purpose of this project was educational. In it, i learned about the management of a database with Sequelize or the creation of endpoints with express. The front-end was made with VueJS, and axios to make usage of the endpoints.
+## Features
+. User authentication and authorization
+. User-written comments and ratings
+. Product catalog with a search feature
+. Shopping cart management
+. Admin dashboard to manage product and users
